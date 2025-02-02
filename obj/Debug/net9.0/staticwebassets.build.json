@@ -1,0 +1,125 @@
+{
+  "Version": 1,
+  "Hash": "owGbKhWVhOnkCilIEzR3xKLDWRti2QUcQKIv2eO9/ao=",
+  "Source": "Student Hall Management",
+  "BasePath": "_content/Student Hall Management",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Student Hall Management\\wwwroot",
+      "Source": "Student Hall Management",
+      "ContentRoot": "F:\\Student Hall Management\\Student Hall Management\\wwwroot\\",
+      "BasePath": "_content/Student Hall Management",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "F:\\Student Hall Management\\Student Hall Management\\wwwroot\\Images\\20\\2004083.jpg",
+      "SourceId": "Student Hall Management",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\Student Hall Management\\Student Hall Management\\wwwroot\\",
+      "BasePath": "_content/Student Hall Management",
+      "RelativePath": "Images/20/2004083#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ca4xn19biq",
+      "Integrity": "9P4tUAB2jHs90ALlOofvcGQlXAWR8pzucbNpCcwe1s4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\20\\2004083.jpg"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "Images/20/2004083.ca4xn19biq.jpg",
+      "AssetFile": "F:\\Student Hall Management\\Student Hall Management\\wwwroot\\Images\\20\\2004083.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "71905"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"9P4tUAB2jHs90ALlOofvcGQlXAWR8pzucbNpCcwe1s4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 16 Jan 2025 14:56:03 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ca4xn19biq"
+        },
+        {
+          "Name": "label",
+          "Value": "Images/20/2004083.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-9P4tUAB2jHs90ALlOofvcGQlXAWR8pzucbNpCcwe1s4="
+        }
+      ]
+    },
+    {
+      "Route": "Images/20/2004083.jpg",
+      "AssetFile": "F:\\Student Hall Management\\Student Hall Management\\wwwroot\\Images\\20\\2004083.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "71905"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"9P4tUAB2jHs90ALlOofvcGQlXAWR8pzucbNpCcwe1s4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 16 Jan 2025 14:56:03 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-9P4tUAB2jHs90ALlOofvcGQlXAWR8pzucbNpCcwe1s4="
+        }
+      ]
+    }
+  ]
+}

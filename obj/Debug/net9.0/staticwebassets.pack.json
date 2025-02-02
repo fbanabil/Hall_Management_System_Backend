@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "F:\\Student Hall Management\\Student Hall Management\\wwwroot\\Images\\20\\2004083.jpg",
+      "PackagePath": "staticwebassets\\Images\\20\\2004083.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.Student Hall Management.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.Student Hall Management.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.build.Student Hall Management.props",
+      "PackagePath": "build\\Student Hall Management.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildMultiTargeting.Student Hall Management.props",
+      "PackagePath": "buildMultiTargeting\\Student Hall Management.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildTransitive.Student Hall Management.props",
+      "PackagePath": "buildTransitive\\Student Hall Management.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

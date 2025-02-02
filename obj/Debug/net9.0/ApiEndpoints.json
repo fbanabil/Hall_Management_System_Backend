@@ -1,0 +1,529 @@
+[
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.AdminNoticeController",
+    "Method": "AddNotice",
+    "RelativePath": "AdminNotice/AddNotice",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "noticeToAddDto",
+        "Type": "Student_Hall_Management.Dtos.NoticeToAddDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "hallId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Student_Hall_Management.Models.Notice",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.AdminRoomController",
+    "Method": "AcceptRequest",
+    "RelativePath": "AdminRoom/AcceptRequest/{studentId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.AdminRoomController",
+    "Method": "AddRoom",
+    "RelativePath": "AdminRoom/AddRoom",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roomToAddDto",
+        "Type": "Student_Hall_Management.Dtos.RoomToAddDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.AdminRoomController",
+    "Method": "DeleteRoom",
+    "RelativePath": "AdminRoom/DeleteRoom/{roomNo}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roomNo",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.AdminRoomController",
+    "Method": "GetStudent",
+    "RelativePath": "AdminRoom/GetStudent/{studentId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.AdminRoomController",
+    "Method": "GetStudents",
+    "RelativePath": "AdminRoom/GetStudents/{roomNo}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roomNo",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.AdminRoomController",
+    "Method": "RejectRequest",
+    "RelativePath": "AdminRoom/RejectRequest/{studentId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.AdminRoomController",
+    "Method": "GetRooms",
+    "RelativePath": "AdminRoom/Room",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.AdminRoomController",
+    "Method": "UpdateRoomCondition",
+    "RelativePath": "AdminRoom/UpdateCondition/{roomNo}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roomNo",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.AdminRoomController",
+    "Method": "UpdateRoom",
+    "RelativePath": "AdminRoom/UpdateSingleRoom/{roomNo}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "editRoomDetails",
+        "Type": "Student_Hall_Management.Dtos.HallAdmin.Room.EditRoomDetailsDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "roomNo",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.ComplaintController",
+    "Method": "AddComment",
+    "RelativePath": "Complaint/AddComment/{ComplaintId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "commentToAddDto",
+        "Type": "Student_Hall_Management.Dtos.CommentToAddDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "ComplaintId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.ComplaintController",
+    "Method": "AddComplaint",
+    "RelativePath": "Complaint/AddComplaint",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "complaintToAddDto",
+        "Type": "Student_Hall_Management.Dtos.ComplaintToAddDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.ComplaintController",
+    "Method": "GetComplaints",
+    "RelativePath": "Complaint/GetComplaints",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Student_Hall_Management.Dtos.ComplaintToShowDto, Student Hall Management, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.HallDetailsManagement",
+    "Method": "AddHallDetails",
+    "RelativePath": "HallDetailsManagement/AddHallDetails",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "hallToAddDto",
+        "Type": "Student_Hall_Management.Dtos.DSW.HallToAddDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.HomePageController",
+    "Method": "GetHomePageData",
+    "RelativePath": "HomePage/GetHomePageData",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Student_Hall_Management.Dtos.HomePageDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.LoginController",
+    "Method": "LoginTry",
+    "RelativePath": "Login/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "Student_Hall_Management.Dtos.LoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.LoginController",
+    "Method": "Logout",
+    "RelativePath": "Login/Logout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.LoginController",
+    "Method": "RefreshToken",
+    "RelativePath": "Login/RefreshStudentToken",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.NoticeController",
+    "Method": "GetNotice",
+    "RelativePath": "Notice/GetNotices",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "filter",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "searchTerm",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Student_Hall_Management.Dtos.NoticeToShowDto, Student Hall Management, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.NoticeController",
+    "Method": "MarkAsRead",
+    "RelativePath": "Notice/MarkAsRead/{noticeId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "noticeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.NoticeController",
+    "Method": "PriorityOrFavourite",
+    "RelativePath": "Notice/PriorityOrFavourite/{noticeId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "noticeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.OverviewController",
+    "Method": "GetHallOverview",
+    "RelativePath": "Overview/GetHallOverview",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.ProfileController",
+    "Method": "GetUserData",
+    "RelativePath": "Profile/GetUserData",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.RegistrationController",
+    "Method": "AddAdmin",
+    "RelativePath": "Registration/AddAdmin",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "hallAdmin",
+        "Type": "Student_Hall_Management.Dtos.HallAdminToAdd",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.RegistrationController",
+    "Method": "RegistrationTry",
+    "RelativePath": "Registration/Registration",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "student",
+        "Type": "Student_Hall_Management.Dtos.StudentToAddDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.RegistrationController",
+    "Method": "Verify",
+    "RelativePath": "Registration/Verify",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "student",
+        "Type": "Student_Hall_Management.Dtos.StudentVerificationDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.RoomController",
+    "Method": "ApplyRoom",
+    "RelativePath": "Room/Apply/{RoomNo}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "RoomNo",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.RoomController",
+    "Method": "CancelRequest",
+    "RelativePath": "Room/CancelRequest/{roomNumber}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roomNumber",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.RoomController",
+    "Method": "GetRoomsToShow",
+    "RelativePath": "Room/GetRoomData",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Student_Hall_Management.Dtos.RoomsToShow, Student Hall Management, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.StudentManagementController",
+    "Method": "GetStudentManagementPage",
+    "RelativePath": "StudentManagement/GetStudentManagementPage",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

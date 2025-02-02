@@ -1,0 +1,6 @@
+
+# ignore app settings
+appsettings.json
+# ignore Assets
+Assets/
+wwwroot/

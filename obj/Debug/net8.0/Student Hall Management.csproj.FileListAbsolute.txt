@@ -1,0 +1,32 @@
+F:\Student Hall Management\Student Hall Management\bin\Debug\net8.0\appsettings.Development.json
+F:\Student Hall Management\Student Hall Management\bin\Debug\net8.0\appsettings.json
+F:\Student Hall Management\Student Hall Management\bin\Debug\net8.0\Student Hall Management.exe
+F:\Student Hall Management\Student Hall Management\bin\Debug\net8.0\Student Hall Management.deps.json
+F:\Student Hall Management\Student Hall Management\bin\Debug\net8.0\Student Hall Management.runtimeconfig.json
+F:\Student Hall Management\Student Hall Management\bin\Debug\net8.0\Student Hall Management.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net8.0\Student Hall Management.pdb
+F:\Student Hall Management\Student Hall Management\bin\Debug\net8.0\Microsoft.OpenApi.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+F:\Student Hall Management\Student Hall Management\obj\Debug\net8.0\Student Hall Management.csproj.AssemblyReference.cache
+F:\Student Hall Management\Student Hall Management\obj\Debug\net8.0\Student Hall Management.GeneratedMSBuildEditorConfig.editorconfig
+F:\Student Hall Management\Student Hall Management\obj\Debug\net8.0\Student Hall Management.AssemblyInfoInputs.cache
+F:\Student Hall Management\Student Hall Management\obj\Debug\net8.0\Student Hall Management.AssemblyInfo.cs
+F:\Student Hall Management\Student Hall Management\obj\Debug\net8.0\Student Hall Management.csproj.CoreCompileInputs.cache
+F:\Student Hall Management\Student Hall Management\obj\Debug\net8.0\Student Hall Management.MvcApplicationPartsAssemblyInfo.cs
+F:\Student Hall Management\Student Hall Management\obj\Debug\net8.0\Student Hall Management.MvcApplicationPartsAssemblyInfo.cache
+F:\Student Hall Management\Student Hall Management\obj\Debug\net8.0\staticwebassets.build.json
+F:\Student Hall Management\Student Hall Management\obj\Debug\net8.0\staticwebassets.development.json
+F:\Student Hall Management\Student Hall Management\obj\Debug\net8.0\staticwebassets\msbuild.Student Hall Management.Microsoft.AspNetCore.StaticWebAssets.props
+F:\Student Hall Management\Student Hall Management\obj\Debug\net8.0\staticwebassets\msbuild.build.Student Hall Management.props
+F:\Student Hall Management\Student Hall Management\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Student Hall Management.props
+F:\Student Hall Management\Student Hall Management\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Student Hall Management.props
+F:\Student Hall Management\Student Hall Management\obj\Debug\net8.0\staticwebassets.pack.json
+F:\Student Hall Management\Student Hall Management\obj\Debug\net8.0\scopedcss\bundle\Student Hall Management.styles.css
+F:\Student Hall Management\Student Hall Management\obj\Debug\net8.0\Student .C636511C.Up2Date
+F:\Student Hall Management\Student Hall Management\obj\Debug\net8.0\Student Hall Management.dll
+F:\Student Hall Management\Student Hall Management\obj\Debug\net8.0\refint\Student Hall Management.dll
+F:\Student Hall Management\Student Hall Management\obj\Debug\net8.0\Student Hall Management.pdb
+F:\Student Hall Management\Student Hall Management\obj\Debug\net8.0\Student Hall Management.genruntimeconfig.cache
+F:\Student Hall Management\Student Hall Management\obj\Debug\net8.0\ref\Student Hall Management.dll

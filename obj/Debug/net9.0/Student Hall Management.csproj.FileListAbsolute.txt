@@ -1,0 +1,85 @@
+F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\Student Hall Management.csproj.AssemblyReference.cache
+F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\Student Hall Management.GeneratedMSBuildEditorConfig.editorconfig
+F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\Student Hall Management.AssemblyInfoInputs.cache
+F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\Student Hall Management.AssemblyInfo.cs
+F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\Student Hall Management.csproj.CoreCompileInputs.cache
+F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\Student Hall Management.MvcApplicationPartsAssemblyInfo.cs
+F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\Student Hall Management.MvcApplicationPartsAssemblyInfo.cache
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\appsettings.Development.json
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\appsettings.json
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Student Hall Management.staticwebassets.endpoints.json
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Student Hall Management.exe
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Student Hall Management.deps.json
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Student Hall Management.runtimeconfig.json
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Student Hall Management.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Student Hall Management.pdb
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Azure.Core.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Azure.Identity.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Dapper.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Microsoft.Bcl.AsyncInterfaces.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Microsoft.Data.SqlClient.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Relational.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Microsoft.Identity.Client.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Microsoft.Identity.Client.Extensions.Msal.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Microsoft.OpenApi.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Microsoft.SqlServer.Server.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Microsoft.Win32.SystemEvents.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\System.ClientModel.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\System.Configuration.ConfigurationManager.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\System.Data.SqlClient.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\System.Drawing.Common.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\System.Memory.Data.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\System.Runtime.Caching.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\System.Security.Cryptography.ProtectedData.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\System.Security.Permissions.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\System.Windows.Extensions.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\runtimes\win-arm64\native\sni.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\runtimes\win-x64\native\sni.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\runtimes\win-x86\native\sni.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\runtimes\unix\lib\net8.0\System.Data.SqlClient.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\runtimes\win\lib\net8.0\System.Data.SqlClient.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\scopedcss\bundle\Student Hall Management.styles.css
+F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\staticwebassets.build.json
+F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\staticwebassets.development.json
+F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\staticwebassets\msbuild.Student Hall Management.Microsoft.AspNetCore.StaticWebAssets.props
+F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\staticwebassets\msbuild.Student Hall Management.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\staticwebassets\msbuild.build.Student Hall Management.props
+F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.Student Hall Management.props
+F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.Student Hall Management.props
+F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\staticwebassets.pack.json
+F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\Student .C636511C.Up2Date
+F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\Student Hall Management.dll
+F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\refint\Student Hall Management.dll
+F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\Student Hall Management.pdb
+F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\Student Hall Management.genruntimeconfig.cache
+F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\ref\Student Hall Management.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\AutoMapper.dll
+F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Student Hall Management.staticwebassets.runtime.json
