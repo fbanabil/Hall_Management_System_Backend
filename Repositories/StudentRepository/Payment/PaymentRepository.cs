@@ -5,13 +5,13 @@ using Student_Hall_Management.Models;
 
 namespace Student_Hall_Management.Repositories
 {
-    public class ComplaintManagementRepository : IComplaintManagementRepository
+    public class PaymentRepository : IPaymentRepository
     {
         DataContextDapper _dapper;
         DataContextEF _entityFramework;
         IPresentDateTime _presentDateTime;
 
-        public ComplaintManagementRepository(IConfiguration entityFramework, IPresentDateTime presentDateTime)
+        public PaymentRepository(IConfiguration entityFramework, IPresentDateTime presentDateTime)
         {
             _entityFramework = new DataContextEF(entityFramework);
             _dapper = new DataContextDapper(entityFramework);
@@ -84,41 +84,43 @@ namespace Student_Hall_Management.Repositories
             return hallAdmin?.HallId ?? null;
         }
 
-        public async Task<Tuple<int,int,int,int>> GetComplaintDetails(int hallId)
+        public async Task<IEnumerable <HallFeePayment>> GetHallPaymentsByStudentId(int studentId)
         {
-            int totalComplaints =await _entityFramework.Complaints
-                .Where(c => c.HallId == hallId)
-                .CountAsync();
-            int pendingComplaints =await _entityFramework.Complaints
-                .Where(c => c.HallId == hallId && c.Status == "Pending")
-                .CountAsync();
-            int inProgressComplaints = await _entityFramework.Complaints
-                .Where(c => c.HallId == hallId && c.Status == "In Progress")
-                .CountAsync();
-            int resolvedComplaints = await _entityFramework.Complaints
-                .Where(c => c.HallId == hallId && c.Status == "Resolved")
-                .CountAsync();
-            return new Tuple<int, int, int, int>(totalComplaints, pendingComplaints,inProgressComplaints, resolvedComplaints);
-        }
-
-        public async Task<IEnumerable<Complaint>> GetComplaintsOfHall(int hallId)
-        {
-            return await _entityFramework.Complaints
-                .Where(c => c.HallId == hallId)
+            return await _entityFramework.HallFeePayments
+                .Where(p => p.StudentId == studentId)
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Comment>> GetCommentsByComplaitId(int complaintId)
+        public async Task<IEnumerable <DinningFeePayment>> GetDinningPaymentsByStudentId(int studentId)
         {
-            return await _entityFramework.Comments
-                .Where(c => c.ComplaintId == complaintId)
+            return await _entityFramework.DinningFeePayments
+                .Where(p => p.StudentId == studentId)
                 .ToListAsync();
         }
 
-        public async Task<Complaint> GetComplaintById(int complaintId)
+        public async Task<int> GetStudentId(string? email)
         {
-            return await _entityFramework.Complaints
-                .Where(c => c.ComplaintId == complaintId)
+            Student? student = await _entityFramework.Students
+                .Where(u => u.Email == email)
+                .FirstOrDefaultAsync();
+            return student?.Id ?? 0;
+        }
+
+        //GetHallFeePaymentById
+
+        public async Task<HallFeePayment?> GetHallFeePaymentById(int hallFeePaymentId)
+        {
+            return await _entityFramework.HallFeePayments
+                .Where(p => p.HallFeePaymentId == hallFeePaymentId)
+                .FirstOrDefaultAsync();
+        }
+
+        //GetDinningFeePaymentById
+
+        public async Task<DinningFeePayment?> GetDinningFeePaymentById(int dinningFeePaymentId)
+        {
+            return await _entityFramework.DinningFeePayments
+                .Where(p => p.DinningFeePaymentId == dinningFeePaymentId)
                 .FirstOrDefaultAsync();
         }
     }

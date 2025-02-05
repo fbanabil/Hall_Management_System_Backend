@@ -162,11 +162,7 @@ namespace Student_Hall_Management.Controllers
 
                 complaintToShowDtos.Add(complaintToShow);
             }
-            //remove redundancy by using automapper
 
-            //complaintToShowDtos = complaintToShowDtos.Select(complaint => _complaintHelper.RemoveRedundancy(complaint)).ToList();
-            //complaintToShowDtos = _complaintHelper.RemoveRedundancy(complaintToShowDtos);
-            //Console.WriteLine(complaintToShowDtos.Count);
             return Ok(complaintToShowDtos);
         }
     }

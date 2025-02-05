@@ -1,4 +1,5 @@
 ﻿using Student_Hall_Management.Data;
+using Student_Hall_Management.Models;
 
 namespace Student_Hall_Management.Repositories
 {
@@ -36,6 +37,32 @@ namespace Student_Hall_Management.Repositories
             {
                 _entityFramework.Update(entityToUpdate);
             }
+        }
+        //gethallId
+        public int? GetHallId(string email)
+        {
+            HallAdmin? hallAdmin = _entityFramework.HallAdmins
+                .Where(u => u.Email == email)
+                .FirstOrDefault<HallAdmin>();
+            return hallAdmin?.HallId;
+        }
+
+        //GetHallDetails
+
+        public HallDetails? GetHallDetails(int? hallId)
+        {
+            HallDetails? hallDetails = _entityFramework.HallDetails
+                .Where(u => u.HallId == hallId)
+                .FirstOrDefault<HallDetails>();
+            return hallDetails;
+        }
+
+        public int TotalSeats(int? hallId)
+        {
+            int totalSeats = _entityFramework.Rooms
+                .Where(u => u.HallId == hallId)
+                .Sum(u => u.HasSeats);
+            return totalSeats;
         }
     }
 }

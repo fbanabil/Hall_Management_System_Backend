@@ -12,5 +12,8 @@ namespace Student_Hall_Management.Repositories
         public string GetHallName(int? hallId);
         public Task<int?> GetHallId(string? email);
         public Task<HallDetails> GetHallDetails(int? hallId);
+        public int TotalSeats(int? hallId);
+        public StudentAuthentication GetSingleStudentAuthentication(string email);
+
     }
 }

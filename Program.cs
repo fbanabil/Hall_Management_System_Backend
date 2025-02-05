@@ -77,6 +77,9 @@ builder.Services.AddScoped<IAdminRoomRepository, AdminRoomRepository>();
 builder.Services.AddScoped<IStudentManagementRepository, StudentManagementRepository>();
 builder.Services.AddScoped<INoticeManagementRepository,NoticeManagementRepository>();
 builder.Services.AddScoped<IComplaintManagementRepository, ComplaintManagementRepository>();
+builder.Services.AddScoped<IAdminPaymentRepository, AdminPaymentRepository>();
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+
 
 var app = builder.Build();
 

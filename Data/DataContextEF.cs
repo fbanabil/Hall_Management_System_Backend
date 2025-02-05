@@ -38,6 +38,10 @@ namespace Student_Hall_Management.Data
 
         public virtual DbSet<NoticePriority> NoticePriorities { get; set; }
         public virtual DbSet<IsRead> IsReads { get; set; }
+        public virtual DbSet<AssignedHallFee> AssignedHallFees { get; set; }
+        public virtual DbSet<AssignedDinningFee> AssignedDinningFees { get; set; }
+
+
         //public virtual DbSet<UserJobInfo> UserJobInfo { get; set; }
 
         //public virtual DbSet<UserSalary> UserSalary { get; set; }
@@ -243,6 +247,35 @@ namespace Student_Hall_Management.Data
                 .HasOne<Notice>()
                 .WithMany()
                 .HasForeignKey(h => h.NoticeId);
+
+
+            //AssignedHallFee
+            modelBuilder.Entity<AssignedHallFee>()
+                .ToTable("AssignedHallFee", "HallManagementSchema")
+                .HasKey(u => new { u.Batch, u.LevelAndTerm });
+
+            modelBuilder.Entity<AssignedHallFee>()
+                .HasOne<HallDetails>()
+                .WithMany()
+                .HasForeignKey(h => h.HallId);
+
+
+            //AssignedDinningFee
+            modelBuilder.Entity<AssignedDinningFee>()
+                .ToTable("AssignedDinningFee", "HallManagementSchema")
+                .HasKey(u => new { u.Month, u.Year });
+
+
+            modelBuilder.Entity<AssignedDinningFee>()
+                .HasOne<HallDetails>()
+                .WithMany()
+                .HasForeignKey(h => h.HallId);
+
+
+
+
+
+
 
 
             //modelBuilder.Entity<Image>()

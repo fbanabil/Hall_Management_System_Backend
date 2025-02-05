@@ -5,6 +5,135 @@
     "version": "1.0"
   },
   "paths": {
+    "/AdminComplaint/AdminComplaintOverview": {
+      "get": {
+        "tags": [
+          "AdminComplaint"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/AdminComplaint/ComplaintsToShow": {
+      "get": {
+        "tags": [
+          "AdminComplaint"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/AdminComplaint/UpdateComplaintStatus/{complaintId}/{newStatus}": {
+      "put": {
+        "tags": [
+          "AdminComplaint"
+        ],
+        "parameters": [
+          {
+            "name": "complaintId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "newStatus",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/AdminPaymentManagement/AssignHallFee": {
+      "post": {
+        "tags": [
+          "AdminPaymentManagement"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HallFeePaymentToAdd"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HallFeePaymentToAdd"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/HallFeePaymentToAdd"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/AdminPaymentManagement/AssignDinningFee": {
+      "post": {
+        "tags": [
+          "AdminPaymentManagement"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DinningFeePaymentToAdd"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DinningFeePaymentToAdd"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DinningFeePaymentToAdd"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/AdminPaymentManagement/GetPaymentPage": {
+      "get": {
+        "tags": [
+          "AdminPaymentManagement"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/AdminRoom/Room": {
       "get": {
         "tags": [
@@ -224,18 +353,6 @@
         }
       }
     },
-    "/AminComplaint/AdminComplaintOverview": {
-      "get": {
-        "tags": [
-          "AminComplaint"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/Complaint/AddComplaint": {
       "post": {
         "tags": [
@@ -387,6 +504,37 @@
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/HallToAddDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/HallDetailsManagement/EditHall": {
+      "put": {
+        "tags": [
+          "HallDetailsManagement"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HallToEditDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HallToEditDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/HallToEditDto"
               }
             }
           }
@@ -778,11 +926,117 @@
         }
       }
     },
+    "/Payment/GetStudentPaymentPage": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentPageDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentPageDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentPageDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Payment/PayHallFee/{paymentId}": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "name": "paymentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Payment/PayDinningFee/{paymentId}": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "name": "paymentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Profile/GetUserData": {
       "get": {
         "tags": [
           "Profile"
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Profile/ChengePassword": {
+      "put": {
+        "tags": [
+          "Profile"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordDto"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -1148,6 +1402,50 @@
         },
         "additionalProperties": false
       },
+      "AssignedDinningFeeToShow": {
+        "type": "object",
+        "properties": {
+          "year": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "month": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalAmount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AssignedHallFeeToShow": {
+        "type": "object",
+        "properties": {
+          "batch": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "levelAndTerm": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalAmount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
       "AvailableRoomsDto": {
         "type": "object",
         "properties": {
@@ -1162,6 +1460,24 @@
           "availableSeats": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ChangePasswordDto": {
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "newPassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "confirmPassword": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1290,6 +1606,67 @@
         },
         "additionalProperties": false
       },
+      "DinningFeePayment": {
+        "type": "object",
+        "properties": {
+          "dinningFeePaymentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "studentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hallId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "paymentAmount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "paymentDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "paymentMethod": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "month": {
+            "type": "string",
+            "nullable": true
+          },
+          "year": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DinningFeePaymentToAdd": {
+        "type": "object",
+        "properties": {
+          "year": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "month": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalAmount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "EditRoomDetailsDto": {
         "type": "object",
         "properties": {
@@ -1376,6 +1753,63 @@
         },
         "additionalProperties": false
       },
+      "HallFeePayment": {
+        "type": "object",
+        "properties": {
+          "hallFeePaymentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "studentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hallId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "paymentAmount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "paymentDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "paymentMethod": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "levelAndTerm": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HallFeePaymentToAdd": {
+        "type": "object",
+        "properties": {
+          "batch": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "levelAndTerm": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalAmount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "HallToAddDto": {
         "type": "object",
         "properties": {
@@ -1390,6 +1824,24 @@
           "totalSeats": {
             "type": "integer",
             "format": "int32"
+          },
+          "hallType": {
+            "type": "string",
+            "nullable": true
+          },
+          "imageData": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HallToEditDto": {
+        "type": "object",
+        "properties": {
+          "hallName": {
+            "type": "string",
+            "nullable": true
           },
           "hallType": {
             "type": "string",
@@ -1476,6 +1928,56 @@
           },
           "isRead": {
             "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PaymentPageDto": {
+        "type": "object",
+        "properties": {
+          "totalAmountToGet": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalHallFeeAmount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalDinningFeeAmount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "percentageOfPayment": {
+            "type": "number",
+            "format": "double"
+          },
+          "assignedDinningFeeToShow": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssignedDinningFeeToShow"
+            },
+            "nullable": true
+          },
+          "assignedHallFeeToShow": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssignedHallFeeToShow"
+            },
+            "nullable": true
+          },
+          "hallFeePayments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HallFeePayment"
+            },
+            "nullable": true
+          },
+          "dinningFeePayments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DinningFeePayment"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false

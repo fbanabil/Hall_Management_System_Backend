@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Student_Hall_Management.Data;
 using Student_Hall_Management.Dtos;
+using Student_Hall_Management.Dtos.HallAdmin;
 using Student_Hall_Management.Helpers;
 using Student_Hall_Management.Models;
 using Student_Hall_Management.Repositories;
@@ -157,5 +158,9 @@ namespace Student_Hall_Management.Controllers
             return Ok(new {message=""});
 
         }
+
+
+
+        
     }
 }

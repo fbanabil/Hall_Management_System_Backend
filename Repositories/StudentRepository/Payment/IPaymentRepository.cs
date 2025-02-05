@@ -2,7 +2,7 @@
 
 namespace Student_Hall_Management.Repositories
 {
-    public interface IComplaintManagementRepository
+    public interface IPaymentRepository
     {
         public bool SaveChanges();
         public void AddEntity<T>(T entityToAdd);
@@ -12,11 +12,12 @@ namespace Student_Hall_Management.Repositories
         public Task AddEntityAsync<T>(T entityToAdd);
         public Task<bool> SaveChangesAsync();
         public Task RemoveEntityAsync<T>(T entityToRemove);
-        public Task<Tuple<int, int, int, int>> GetComplaintDetails(int hallId);
-        public Task<IEnumerable<Complaint>> GetComplaintsOfHall(int hallId);
-        public Task<IEnumerable<Comment>> GetCommentsByComplaitId(int complaintId);
-        public Task<Complaint> GetComplaintById(int complaintId);
+        public Task<IEnumerable<HallFeePayment>> GetHallPaymentsByStudentId(int studentId);
+        public Task<IEnumerable<DinningFeePayment>> GetDinningPaymentsByStudentId(int studentId);
+        public Task<int> GetStudentId(string? email);
+        public Task<HallFeePayment?> GetHallFeePaymentById(int hallFeePaymentId);
 
+        public Task<DinningFeePayment?> GetDinningFeePaymentById(int dinningFeePaymentId);
 
 
     }

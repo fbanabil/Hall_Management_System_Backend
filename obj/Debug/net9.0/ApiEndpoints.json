@@ -1,5 +1,88 @@
 [
   {
+    "ContainingType": "Student_Hall_Management.Controllers.AdminComplaintController",
+    "Method": "GetComplaintPage",
+    "RelativePath": "AdminComplaint/AdminComplaintOverview",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.AdminComplaintController",
+    "Method": "ComplaintToShow",
+    "RelativePath": "AdminComplaint/ComplaintsToShow",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.AdminComplaintController",
+    "Method": "UpdateComplaintStatus",
+    "RelativePath": "AdminComplaint/UpdateComplaintStatus/{complaintId}/{newStatus}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "complaintId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "newStatus",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.AdminPaymentManagementController",
+    "Method": "AssignDinningFee",
+    "RelativePath": "AdminPaymentManagement/AssignDinningFee",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dinningFeePaymentToAdd",
+        "Type": "Student_Hall_Management.Dtos.DinningFeePaymentToAdd",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.AdminPaymentManagementController",
+    "Method": "AssignHallFee",
+    "RelativePath": "AdminPaymentManagement/AssignHallFee",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "hallFeePaymentToAdd",
+        "Type": "Student_Hall_Management.Dtos.HallFeePaymentToAdd",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.AdminPaymentManagementController",
+    "Method": "GetPaymentPage",
+    "RelativePath": "AdminPaymentManagement/GetPaymentPage",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Student_Hall_Management.Controllers.AdminRoomController",
     "Method": "AcceptRequest",
     "RelativePath": "AdminRoom/AcceptRequest/{studentId}",
@@ -143,16 +226,6 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Student_Hall_Management.Controllers.AminComplaintController",
-    "Method": "GetComplaintPage",
-    "RelativePath": "AminComplaint/AdminComplaintOverview",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "Student_Hall_Management.Controllers.ComplaintController",
     "Method": "AddComment",
     "RelativePath": "Complaint/AddComment/{ComplaintId}",
@@ -231,6 +304,22 @@
       {
         "Name": "hallToAddDto",
         "Type": "Student_Hall_Management.Dtos.DSW.HallToAddDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.HallDetailsManagement",
+    "Method": "EditHall",
+    "RelativePath": "HallDetailsManagement/EditHall",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "hallToEditDto",
+        "Type": "Student_Hall_Management.Dtos.HallAdmin.HallToEditDto",
         "IsRequired": true
       }
     ],
@@ -476,6 +565,74 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.PaymentController",
+    "Method": "GetStudentPaymentPage",
+    "RelativePath": "Payment/GetStudentPaymentPage",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Student_Hall_Management.Dtos.PaymentPageDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.PaymentController",
+    "Method": "PayDinningFee",
+    "RelativePath": "Payment/PayDinningFee/{paymentId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "paymentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.PaymentController",
+    "Method": "PayHallFee",
+    "RelativePath": "Payment/PayHallFee/{paymentId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "paymentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.ProfileController",
+    "Method": "ChangePassword",
+    "RelativePath": "Profile/ChengePassword",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "changePasswordDto",
+        "Type": "Student_Hall_Management.Dtos.ChangePasswordDto",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

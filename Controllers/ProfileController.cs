@@ -6,6 +6,10 @@ using Student_Hall_Management.Repositories;
 using Student_Hall_Management.Dtos;
 using System.Security.Claims;
 using System.Data;
+using Student_Hall_Management.Dtos.HallAdmin;
+using Microsoft.Identity.Client;
+using Student_Hall_Management.Helpers;
+using System.Security.Cryptography;
 
 namespace Student_Hall_Management.Controllers
 {
@@ -16,10 +20,12 @@ namespace Student_Hall_Management.Controllers
     {
         private readonly IProfileRepository _profileRepository;
         private readonly IMapper _mapper;
+        private readonly AuthenticatioHelper _authenticationHelper;
 
-        public ProfileController(IProfileRepository profileRepository)
+        public ProfileController(IProfileRepository profileRepository,IConfiguration config)
         {
             _profileRepository = profileRepository;
+            _authenticationHelper = new AuthenticatioHelper(config);
             _mapper = new MapperConfiguration(cfg =>
             {
                 //    cfg.CreateMap<ProfileDto, Profile>();
@@ -78,7 +84,7 @@ namespace Student_Hall_Management.Controllers
                     hallDetails = await Task.Run(() => _profileRepository.GetHallDetails(HallId));
                 }
                 HallDetailsToShowDto hallDetailsToShow = _mapper.Map<HallDetailsToShowDto>(hallDetails);
-
+                hallDetailsToShow.TotalSeats = _profileRepository.TotalSeats(HallId);
                 hallDetailsToShow.ImageData = Convert.ToBase64String(System.IO.File.ReadAllBytes(hallDetails.ImageData));
                 //Console.WriteLine(hallDetails.Established);
                 hallDetailsToShow.Established = DateOnly.ParseExact(hallDetails.Established.ToString("dd/MM/yyyy"), "dd/MM/yyyy");
@@ -92,5 +98,63 @@ namespace Student_Hall_Management.Controllers
 
 
         }
+
+        [HttpPut("ChengePassword")]
+        public IActionResult ChangePassword(ChangePasswordDto changePasswordDto)
+        {
+            if (changePasswordDto == null)
+            {
+                return BadRequest(new { message = "Invalid Request" });
+            }
+
+            string email = User.FindFirst("userEmail")?.Value;
+
+            if (email == null)
+            {
+                return BadRequest(new { message = "Invalid Request" });
+            }
+
+            StudentAuthentication studentAuthentication = _profileRepository.GetSingleStudentAuthentication(email);
+
+
+            byte[] passwordHash = _authenticationHelper.GetPasswordHash(changePasswordDto.Password, studentAuthentication.PasswordSalt);
+
+            if (studentAuthentication.PasswordHash.Length != passwordHash.Length)
+            {
+                return BadRequest(new { message = "Invalid Password" });
+            }
+
+            for (int i = 0; i < passwordHash.Length; i++)
+            {
+                if (passwordHash[i] != studentAuthentication.PasswordHash[i])
+                {
+                    return BadRequest(new { message = "Invalid Password" });
+                }
+            }
+            byte[] passwordSalt = new byte[128 / 8];
+            using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(passwordSalt);
+            }
+            Console.Write(changePasswordDto.Password);
+            byte[] passwordHash1 = _authenticationHelper.GetPasswordHash(changePasswordDto.NewPassword, passwordSalt);
+
+            studentAuthentication.PasswordHash = passwordHash1;
+            studentAuthentication.PasswordSalt = passwordSalt;
+
+            _profileRepository.UpdateEntity(studentAuthentication);
+            if (_profileRepository.SaveChanges())
+            {
+                return Ok(new { message = "Password Changed Successfully" });
+            }
+            else
+            {
+                return BadRequest(new { message = "Password Changing Failed" });
+
+            }
+
+        }
+
+
     }
 }

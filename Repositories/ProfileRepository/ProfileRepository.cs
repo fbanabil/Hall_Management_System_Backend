@@ -73,6 +73,23 @@ namespace Student_Hall_Management.Repositories
             return hall?? null;
         }
 
-    }
+        public int TotalSeats(int? hallId)
+        {
+            int totalSeats = _entityFramework.Rooms
+                .Where(u => u.HallId == hallId)
+                .Sum(u => u.HasSeats);
+            return totalSeats;
+        }
 
+        //GetSingleStudentAuthentication
+        public StudentAuthentication GetSingleStudentAuthentication(string email)
+        {
+            StudentAuthentication? studentAuthentication = _entityFramework.StudentAuthentication
+                .Where(u => u.Email == email)
+                .FirstOrDefault<StudentAuthentication>();
+            return studentAuthentication;
+        }
+    }
 }
+
+
