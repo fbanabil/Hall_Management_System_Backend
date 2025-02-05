@@ -1,4 +1,5 @@
-﻿using Student_Hall_Management.Models;
+﻿using Student_Hall_Management.Dtos;
+using Student_Hall_Management.Models;
 
 namespace Student_Hall_Management.Helpers
 {
@@ -77,6 +78,25 @@ namespace Student_Hall_Management.Helpers
 
             return filePath;
         }
-        
+
+        public List<ComplaintToShowDto> RemoveRedundancy(List<ComplaintToShowDto> complaintToShowDto)
+        {
+
+            //Unique Complaints
+            
+            List<ComplaintToShowDto> complaintToShowDtosYo = new List<ComplaintToShowDto>();
+
+            foreach (var complaint in complaintToShowDto)
+            {
+                if (complaintToShowDtosYo.Any(c => c.ComplaintId == complaint.ComplaintId))
+                {
+                    continue;
+                }
+                complaintToShowDtosYo.Add(complaint);
+            }
+            return complaintToShowDtosYo;
+
+        }
+
     }
 }

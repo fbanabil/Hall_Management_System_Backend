@@ -1,4 +1,4 @@
-﻿namespace Student_Hall_Management.Models.Hall
+﻿namespace Student_Hall_Management.Models
 {
     public partial class HallReview
     {

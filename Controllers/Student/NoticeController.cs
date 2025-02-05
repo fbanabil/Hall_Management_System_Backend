@@ -61,6 +61,8 @@ namespace Student_Hall_Management.Controllers
             {
                 NoticeToShowDto noticeTo = _mapper.Map<NoticeToShowDto>(notice);
                 noticeTo.Date = notice.Date.ToString("dd/MM/yyyy");
+                noticeTo.Priority  = _noticeRepository.PriorityOrFavourite(notice.NoticeId, student.Id);
+                noticeTo.IsRead = _noticeRepository.IsRead(notice.NoticeId, student.Id);
                 noticeToShowDtos.Add(noticeTo);
             }
 
@@ -86,50 +88,64 @@ namespace Student_Hall_Management.Controllers
         [HttpPut("PriorityOrFavourite/{noticeId}")] 
         public IActionResult PriorityOrFavourite(int noticeId)
         {
-            Notice? notice = _noticeRepository.GetSingleNotice(noticeId);
-            if (notice == null)
+            string email = User.FindFirst("userEmail")?.Value;
+
+            if (string.IsNullOrEmpty(email))
             {
-                return BadRequest("Notice Not Found");
+                return BadRequest("Authorization Failed");
             }
 
-            if(notice.Priority == false)
+            Student? student = _noticeRepository.GetSingleStudent(email);
+
+            bool exists=_noticeRepository.PriorityOrFavourite(noticeId, student.Id);
+
+            if (exists)
             {
-                notice.Priority = true;
+                _noticeRepository.RemoveEntity<NoticePriority>(_noticeRepository.NoticePriority(noticeId, student.Id));
             }
             else
             {
-                notice.Priority = false;
+                NoticePriority noticePriority = new NoticePriority
+                {
+                    NoticeId = noticeId,
+                    StudentId = student.Id
+                };
+                _noticeRepository.AddEntity<NoticePriority>(noticePriority);
             }
 
-            _noticeRepository.UpdateEntity<Notice>(notice);
-            
             if (_noticeRepository.SaveChanges())
             {
-                Console.WriteLine(notice.Priority);
+                //Console.WriteLine(notice.Priority);
                 return Ok();
             }
             return BadRequest("Failed to update favourites");
         }
 
+
         [HttpPut("MarkAsRead/{noticeId}")]
         public IActionResult MarkAsRead(int noticeId)
         {
-            Notice? notice = _noticeRepository.GetSingleNotice(noticeId);
-            if (notice == null)
+            string email = User.FindFirst("userEmail")?.Value;
+            if (string.IsNullOrEmpty(email))
             {
-                return BadRequest("Notice Not Found");
+                return BadRequest("Authorization Failed");
             }
 
-            if (notice.IsRead == false)
-            {
-                notice.IsRead = true;
+            Student? student = _noticeRepository.GetSingleStudent(email);
+
+            bool exists = _noticeRepository.IsRead(noticeId, student.Id);
+            if (exists) {
+                _noticeRepository.RemoveEntity<IsRead>(_noticeRepository.IsReadEntity(noticeId, student.Id));
             }
             else
             {
-                notice.IsRead = false;
+                IsRead noticePriority = new IsRead
+                {
+                    NoticeId = noticeId,
+                    StudentId = student.Id
+                };
+                _noticeRepository.AddEntity<IsRead>(noticePriority);
             }
-
-            _noticeRepository.UpdateEntity<Notice>(notice);
 
             if (_noticeRepository.SaveChanges())
             {

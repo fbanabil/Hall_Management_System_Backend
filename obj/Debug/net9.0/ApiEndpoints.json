@@ -1,36 +1,5 @@
 [
   {
-    "ContainingType": "Student_Hall_Management.Controllers.AdminNoticeController",
-    "Method": "AddNotice",
-    "RelativePath": "AdminNotice/AddNotice",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "noticeToAddDto",
-        "Type": "Student_Hall_Management.Dtos.NoticeToAddDto",
-        "IsRequired": true
-      },
-      {
-        "Name": "hallId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Student_Hall_Management.Models.Notice",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
     "ContainingType": "Student_Hall_Management.Controllers.AdminRoomController",
     "Method": "AcceptRequest",
     "RelativePath": "AdminRoom/AcceptRequest/{studentId}",
@@ -171,6 +140,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.AminComplaintController",
+    "Method": "GetComplaintPage",
+    "RelativePath": "AminComplaint/AdminComplaintOverview",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -324,6 +303,27 @@
     ]
   },
   {
+    "ContainingType": "Student_Hall_Management.Controllers.LoginController",
+    "Method": "UserActivity",
+    "RelativePath": "Login/UserActivity/{isActive}/{role}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "isActive",
+        "Type": "System.Boolean",
+        "IsRequired": true
+      },
+      {
+        "Name": "role",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Student_Hall_Management.Controllers.NoticeController",
     "Method": "GetNotice",
     "RelativePath": "Notice/GetNotices",
@@ -395,6 +395,78 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.NoticeManagementController",
+    "Method": "AddNotice",
+    "RelativePath": "NoticeManagement/AddNotice",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "noticeToAddDto",
+        "Type": "Student_Hall_Management.Dtos.NoticeToAddDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Student_Hall_Management.Dtos.AdminNoticePageDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.NoticeManagementController",
+    "Method": "DeleteNotice",
+    "RelativePath": "NoticeManagement/DeleteNotice/{noticeId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "noticeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Student_Hall_Management.Dtos.AdminNoticePageDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.NoticeManagementController",
+    "Method": "GetNoticePage",
+    "RelativePath": "NoticeManagement/GetNoticesOfHall",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Student_Hall_Management.Dtos.AdminNoticePageDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Student_Hall_Management.Controllers.OverviewController",
@@ -518,12 +590,79 @@
   },
   {
     "ContainingType": "Student_Hall_Management.Controllers.StudentManagementController",
+    "Method": "AssignRoom",
+    "RelativePath": "StudentManagement/AssignRoom/{studentId}/{roomNo}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "roomNo",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.StudentManagementController",
+    "Method": "DeleteStudent",
+    "RelativePath": "StudentManagement/DeleteStudent/{studentId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.StudentManagementController",
+    "Method": "GetAvailableRooms",
+    "RelativePath": "StudentManagement/GetAvailableRooms",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Student_Hall_Management.Dtos.AvailableRoomsDto, Student Hall Management, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.StudentManagementController",
     "Method": "GetStudentManagementPage",
     "RelativePath": "StudentManagement/GetStudentManagementPage",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Student_Hall_Management.Dtos.HallAdmin.Student.StudentManagementPageDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

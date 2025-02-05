@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Student_Hall_Management.Data;
+using Student_Hall_Management.Dtos;
+using Student_Hall_Management.Dtos.HallAdmin.Student;
 using Student_Hall_Management.Models;
+
 
 namespace Student_Hall_Management.Repositories
 {
@@ -105,6 +108,85 @@ namespace Student_Hall_Management.Repositories
                 .Where(s => s.Id == studentId)
                 .FirstOrDefaultAsync();
             return student;
+        }
+
+        public async Task<IEnumerable<HallFeePayment>> HallFeePayment(int studentId)
+        {
+            IEnumerable<HallFeePayment> hallFeePayments = await _entityFramework.HallFeePayments
+                .Where(h => h.StudentId == studentId)
+                .ToListAsync();
+            return hallFeePayments;
+        }
+
+        public async Task<IEnumerable<DinningFeePayment>> DinningFeePayments(int studentId)
+        {
+            IEnumerable<DinningFeePayment> dinningFeePayments = await _entityFramework.DinningFeePayments
+                .Where(d => d.StudentId == studentId)
+                .ToListAsync();
+            return dinningFeePayments;
+        }
+
+        public async Task<IEnumerable<HallReview>> HallReviews(int studentId)
+        {
+            IEnumerable<HallReview> hallReviews = await _entityFramework.HallReviews
+                .Where(h => h.Reviewer == studentId)
+                .ToListAsync();
+            return hallReviews;
+        }
+
+        public async Task<IEnumerable<Comment>> Comments(int studentId)
+        {
+            IEnumerable<Comment> comments = await _entityFramework.Comments
+                .Where(c => c.StudentId == studentId)
+                .ToListAsync();
+            return comments;
+        }
+
+        public async Task<IEnumerable<Complaint>> Complaints(int studentId)
+        {
+            IEnumerable<Complaint> complaints = await _entityFramework.Complaints
+                .Where(c => c.StudentId == studentId)
+                .ToListAsync();
+            return complaints;
+        }
+        public async Task<IEnumerable<PendingRoomRequest>> PendingRoomRequests(int studentId)
+        {
+            IEnumerable<PendingRoomRequest> pendingRoomRequests = await _entityFramework.PendingRoomRequests
+                .Where(p => p.StudentId == studentId)
+                .ToListAsync();
+            return pendingRoomRequests;
+        }
+
+        public async Task<Room> Room(string roomId)
+        {
+            Room room = await _entityFramework.Rooms
+                .Where(r => r.RoomNo == roomId)
+                .FirstOrDefaultAsync();
+            return room;
+        }
+
+        public async Task<StudentAuthentication> StudentAuthentication(string email)
+        {
+            StudentAuthentication studentAuthentication = await _entityFramework.StudentAuthentication
+                .Where(s => s.Email == email)
+                .FirstOrDefaultAsync();
+            return studentAuthentication;
+        }
+
+        public async Task<Room> GetRoomByRoomNoAndHallId(string roomNo,int hallId)
+        {
+            Room room = await _entityFramework.Rooms
+                .Where(r => r.RoomNo == roomNo && r.HallId==hallId)
+                .FirstOrDefaultAsync();
+            return room;
+        }
+
+        public async Task<IEnumerable<Room>> GetAvailableRooms(int hallId)
+        {
+            IEnumerable<Room> rooms = await _entityFramework.Rooms
+                .Where(r => r.HallId == hallId)
+                .ToListAsync();
+            return rooms;
         }
     }
 }

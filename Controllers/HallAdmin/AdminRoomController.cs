@@ -277,6 +277,16 @@ namespace Student_Hall_Management.Controllers
                 }
 
                 room.OccupiedSeats += 1;
+                if(room.OccupiedSeats == room.HasSeats)
+                {
+                    room.RoomStatus = "Occupied";
+                }
+                else {
+                    room.RoomStatus = "UnOccupied";
+                }
+
+
+
                 _adminRoomRepository.UpdateEntity(room);
                 student.RoomNo = pendingRoomRequest.RoomNo;
                 student.HallId = hallId.Value;
@@ -317,5 +327,6 @@ namespace Student_Hall_Management.Controllers
             }
             return BadRequest("Hall Id not found");
         }
+
     }
 }

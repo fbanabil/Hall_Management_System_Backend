@@ -130,5 +130,32 @@ namespace Student_Hall_Management.Controllers
             }
             return Ok(new { message = "Logout Success" });
         }
+
+
+        [HttpPost("UserActivity/{isActive}/{role}")]
+        public async Task<IActionResult> UserActivity(bool isActive,string role)
+        {
+            if(role=="Student")
+            {
+                string email = User.FindFirst("userEmail")?.Value;
+                if (email == null)
+                {
+                    return BadRequest("Invalid Request");
+                }
+                //Console.WriteLine(isActive);
+                if (isActive)
+                {
+                    await _loginRepository.UpdateActivity(isActive, email);
+                    return Ok(new { data = "User is Active" });
+                }
+                else
+                {
+                    await _loginRepository.UpdateActivity(isActive, email);
+                    return Ok(new { data = "User is Inactive" });
+                }
+            }
+            return Ok(new {message=""});
+
+        }
     }
 }

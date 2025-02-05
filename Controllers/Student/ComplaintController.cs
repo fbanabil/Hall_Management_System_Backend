@@ -21,7 +21,7 @@ namespace Student_Hall_Management.Controllers
         {
             _complaintRepository = complaintRepository;
             _complaintHelper = new ComplaintHelper();
-          
+
             _mapper = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<ComplaintToShowDto, Complaint>();
@@ -124,7 +124,6 @@ namespace Student_Hall_Management.Controllers
             return BadRequest("Failed to add comment");
         }
 
-
         [HttpGet("GetComplaints")]
         public async Task<ActionResult<IEnumerable<ComplaintToShowDto>>> GetComplaints(int pageNumber = 1, int pageSize = 10)
         {
@@ -140,38 +139,34 @@ namespace Student_Hall_Management.Controllers
                 return BadRequest("No Hall Assigned");
             }
 
-            List<ComplaintToShowDto> complaintToShowDtos = new List<ComplaintToShowDto>();
-
             IEnumerable<Complaint> complaints = _complaintRepository.GetComplaintsOfHall(student.HallId, pageNumber, pageSize);
+            List<ComplaintToShowDto> complaintToShowDtos = new List<ComplaintToShowDto>();
 
             foreach (Complaint c in complaints)
             {
-                ComplaintToShowDto complaintToShow = new ComplaintToShowDto();
-                _mapper.Map(c, complaintToShow);
+                ComplaintToShowDto complaintToShow = _mapper.Map<ComplaintToShowDto>(c);
 
                 IEnumerable<Comment> comments = await Task.Run(() => _complaintRepository.GetCommentsByComplaitId(c.ComplaintId));
-
-                List<CommentToShowDto>? commentToShowDtos = new List<CommentToShowDto>();
-
-                foreach (Comment comment in comments)
-                {
-                    CommentToShowDto commentToShow = _mapper.Map<CommentToShowDto>(comment);
-                    commentToShowDtos.Add(commentToShow);
-                }
+                List<CommentToShowDto> commentToShowDtos = comments.Select(comment => _mapper.Map<CommentToShowDto>(comment)).ToList();
 
                 complaintToShow.Comments = commentToShowDtos;
 
-                if (complaintToShow.ImageData != null)
+                if (!string.IsNullOrEmpty(c.ImageData))
                 {
-                    complaintToShow.ImageData = Convert.ToBase64String(System.IO.File.ReadAllBytes(complaintToShow.ImageData));
+                    complaintToShow.ImageData = Convert.ToBase64String(System.IO.File.ReadAllBytes(c.ImageData));
                 }
-                if (complaintToShow.FileData != null)
+                if (!string.IsNullOrEmpty(c.FileData))
                 {
-                    complaintToShow.FileData = Convert.ToBase64String(System.IO.File.ReadAllBytes(complaintToShow.FileData));
+                    complaintToShow.FileData = Convert.ToBase64String(System.IO.File.ReadAllBytes(c.FileData));
                 }
+
                 complaintToShowDtos.Add(complaintToShow);
             }
+            //remove redundancy by using automapper
 
+            //complaintToShowDtos = complaintToShowDtos.Select(complaint => _complaintHelper.RemoveRedundancy(complaint)).ToList();
+            //complaintToShowDtos = _complaintHelper.RemoveRedundancy(complaintToShowDtos);
+            //Console.WriteLine(complaintToShowDtos.Count);
             return Ok(complaintToShowDtos);
         }
     }

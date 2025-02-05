@@ -130,13 +130,24 @@ namespace Student_Hall_Management.Repositories
 
         public async Task<double> GetReview(int? hallId)
         {
-            //avg of rating
+            Console.WriteLine(hallId);
+            if (hallId == null)
+            {
+                return 0;
+            }
 
-            double rating = await _entityFramework.HallReviews
-                .Where(r => r.HallId == hallId)
-                .AverageAsync(r => r.Rating);
+            var reviews = _entityFramework.HallReviews
+                .Where(r => r.HallId == hallId);
+
+            if (!await reviews.AnyAsync())
+            {
+                return 0;
+            }
+
+            double rating = await reviews.AverageAsync(r => r.Rating);
             return rating;
         }
+
 
         public async Task<Tuple<int,int,int,int>> GetComplaintCategoryDetails(int? hallId)
         {

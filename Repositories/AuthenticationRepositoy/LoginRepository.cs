@@ -1,4 +1,5 @@
-﻿using Student_Hall_Management.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Student_Hall_Management.Data;
 using Student_Hall_Management.Models;
 
 namespace Student_Hall_Management.Repositories
@@ -61,6 +62,20 @@ namespace Student_Hall_Management.Repositories
                 return hallAdminAuthentication;
             }
             return null;
+        }
+
+        public async Task UpdateActivity(bool isActive, string email)
+        {
+            Student student = await _entityFramework.Students
+                .Where(u => u.Email == email)
+                .FirstOrDefaultAsync();
+
+            if (student != null)
+            {
+                student.IsActive = isActive;
+                _entityFramework.Students.Update(student);
+                _entityFramework.SaveChanges();
+            }
         }
     }
 }

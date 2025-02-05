@@ -13,5 +13,11 @@ namespace Student_Hall_Management.Repositories
         public Notice GetSingleNotice(int noticeId);
         public int TotalNoticesOfHall(int? hallId);
         public IEnumerable<Notice> GetNoticesOfHall(int? hallId);
+        public bool PriorityOrFavourite(int noticeId, int studentId);
+        public NoticePriority? NoticePriority(int noticeId, int studentId);
+        public bool IsRead(int noticeId, int studentId);
+        public IsRead? IsReadEntity(int noticeId, int studentId);
+
+
     }
 }

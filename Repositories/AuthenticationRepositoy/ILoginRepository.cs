@@ -10,6 +10,8 @@ namespace Student_Hall_Management.Repositories
         public void UpdateEntity<T>(T entityToUpdate);
         public StudentAuthentication GetSingleStudentAuthentication(string email);
         public HallAdminAuthentication GetSingleHallAdminAuthentication(string email);
+        public  Task UpdateActivity(bool isActive, string email);
+
 
     }
 }

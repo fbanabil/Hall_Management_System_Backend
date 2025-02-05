@@ -83,3 +83,4 @@ F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Microsoft.As
 F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\AutoMapper.dll
 F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 F:\Student Hall Management\Student Hall Management\bin\Debug\net9.0\Student Hall Management.staticwebassets.runtime.json
+F:\Student Hall Management\Student Hall Management\obj\Debug\net9.0\Student Hall Management.sourcelink.json

@@ -106,7 +106,7 @@ namespace Student_Hall_Management.Controllers
             try
             {
                 Console.WriteLine("Your 6 digit verification code is: " + verificationCode);
-                //_emailService.SendEmail(student.Email, "Verification Code", "Your 6 digit verification code is: " + verificationCode);
+                _emailService.SendEmail(student.Email, "Verification Code", "Your 6 digit verification code is: " + verificationCode);
             }
             catch (Exception ex)
             {

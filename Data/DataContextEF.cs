@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Student_Hall_Management.Models;
-using Student_Hall_Management.Models.Hall;
 
 namespace Student_Hall_Management.Data
 {
@@ -34,6 +33,11 @@ namespace Student_Hall_Management.Data
 
         public virtual DbSet<HallReview> HallReviews { get; set; }
 
+        public virtual DbSet<HallFeePayment>  HallFeePayments { get; set; }
+        public virtual DbSet<DinningFeePayment> DinningFeePayments { get; set; }
+
+        public virtual DbSet<NoticePriority> NoticePriorities { get; set; }
+        public virtual DbSet<IsRead> IsReads { get; set; }
         //public virtual DbSet<UserJobInfo> UserJobInfo { get; set; }
 
         //public virtual DbSet<UserSalary> UserSalary { get; set; }
@@ -190,8 +194,55 @@ namespace Student_Hall_Management.Data
                 .HasOne<HallDetails>()
                 .WithMany()
                 .HasForeignKey(h => h.HallId);
-          
 
+
+            //HallFeePayment
+            modelBuilder.Entity<HallFeePayment>()
+                .ToTable("HallFeePayments", "HallManagementSchema")
+                .HasKey(u => u.HallFeePaymentId);
+            modelBuilder.Entity<HallFeePayment>()
+                .HasOne<Student>()
+                .WithMany()
+                .HasForeignKey(h => h.StudentId);
+
+
+            //DinningFeePayment
+            modelBuilder.Entity<DinningFeePayment>()
+                .ToTable("DinningFeePayments", "HallManagementSchema")
+                .HasKey(u => u.DinningFeePaymentId);
+            modelBuilder.Entity<DinningFeePayment>()
+                .HasOne<Student>()
+                .WithMany()
+                .HasForeignKey(h => h.StudentId);
+
+
+            //NoticePriority
+            modelBuilder.Entity<NoticePriority>()
+                .ToTable("NoticePriority", "HallManagementSchema")
+                .HasKey(u => new { u.StudentId, u.NoticeId });
+
+            modelBuilder.Entity<NoticePriority>()
+                .HasOne<Student>()
+                .WithMany()
+                .HasForeignKey(h => h.StudentId);
+            modelBuilder.Entity<NoticePriority>()
+                .HasOne<Notice>()
+                .WithMany()
+                .HasForeignKey(h => h.NoticeId);
+
+
+            //IsRead
+            modelBuilder.Entity<IsRead>()
+                .ToTable("IsRead", "HallManagementSchema")
+                .HasKey(u => new { u.StudentId, u.NoticeId });
+            modelBuilder.Entity<IsRead>()
+                .HasOne<Student>()
+                .WithMany()
+                .HasForeignKey(h => h.StudentId);
+            modelBuilder.Entity<IsRead>()
+                .HasOne<Notice>()
+                .WithMany()
+                .HasForeignKey(h => h.NoticeId);
 
 
             //modelBuilder.Entity<Image>()

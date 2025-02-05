@@ -55,6 +55,63 @@ namespace Student_Hall_Management.Helpers
 
         }
 
-        
+        public async Task<bool> DeleteStudent(int studentId)
+        {
+            Student student = await _studentManagementRepository.GetStudentById(studentId);
+
+            IEnumerable<HallFeePayment> hallFeePayments = await _studentManagementRepository.HallFeePayment(studentId);
+            IEnumerable<DinningFeePayment> dinningFeePayments = await _studentManagementRepository.DinningFeePayments(studentId);
+            IEnumerable<HallReview> hallReviews = await _studentManagementRepository.HallReviews(studentId);
+            IEnumerable<Comment> comments = await _studentManagementRepository.Comments(studentId);
+            IEnumerable<Complaint> complaints = await _studentManagementRepository.Complaints(studentId);
+            IEnumerable<PendingRoomRequest> pendingRoomRequests = await _studentManagementRepository.PendingRoomRequests(studentId);
+            if (student != null)
+            {
+                StudentAuthentication studentAuthentication = await _studentManagementRepository.StudentAuthentication(student.Email);
+                _studentManagementRepository.RemoveEntity<StudentAuthentication>(studentAuthentication);
+            }
+            if (student.RoomNo != null)
+            {
+                Room room = await _studentManagementRepository.Room(student.RoomNo);
+                room.OccupiedSeats -= 1;
+                _studentManagementRepository.UpdateEntity(room);
+            }
+
+            foreach (var hallFeePayment in hallFeePayments)
+            {
+                _studentManagementRepository.RemoveEntity<HallFeePayment>(hallFeePayment);
+            }
+
+            foreach (var dinningFeePayment in dinningFeePayments)
+            {
+                _studentManagementRepository.RemoveEntity<DinningFeePayment>(dinningFeePayment);
+            }
+
+            foreach (var hallReview in hallReviews)
+            {
+                _studentManagementRepository.RemoveEntity<HallReview>(hallReview);
+            }
+
+            foreach (var comment in comments)
+            {
+                _studentManagementRepository.RemoveEntity<Comment>(comment);
+            }
+
+            foreach (var complaint in complaints)
+            {
+                _studentManagementRepository.RemoveEntity<Complaint>(complaint);
+            }
+
+            foreach (var pendingRoomRequest in pendingRoomRequests)
+            {
+                _studentManagementRepository.RemoveEntity<PendingRoomRequest>(pendingRoomRequest);
+            }
+
+            _studentManagementRepository.RemoveEntity<Student>(student);
+
+            return await _studentManagementRepository.SaveChangesAsync();
+        }
+
+
     }
 }

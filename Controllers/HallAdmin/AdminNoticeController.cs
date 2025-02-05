@@ -32,24 +32,6 @@ namespace Student_Hall_Management.Controllers
 
 
 
-        [HttpPost("AddNotice")]
-        public ActionResult<Notice> AddNotice(NoticeToAddDto noticeToAddDto, int hallId)
-        {
-            Notice notice = _mapper.Map<Notice>(noticeToAddDto);
-            notice.HallId = hallId;
-            notice.Priority = false;
-            notice.IsRead = false;
-            notice.Date = _presentDateTime.GetPresentDateTime();
-            _noticeRepository.AddEntity<Notice>(notice);
-            
-            if(_noticeRepository.SaveChanges())
-            {
-                return Ok(notice);
-            }
-            else
-            {
-                return BadRequest(new { message = "Notice Adding Failed" });
-            }
-        }
+        
     }
 }

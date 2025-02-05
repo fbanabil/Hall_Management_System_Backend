@@ -84,5 +84,45 @@ namespace Student_Hall_Management.Repositories
                 .Where(u => u.HallId == hallId)
                 .Count();
         }
+
+        public bool PriorityOrFavourite(int noticeId, int studentId)
+        {
+
+            int? noticePriority = _entityFramework.NoticePriorities
+                .Where(u => u.NoticeId == noticeId && u.StudentId == studentId)
+                .Count<NoticePriority>();
+
+            if (noticePriority == 0) return false;
+
+            return true;
+        }
+
+        public NoticePriority? NoticePriority(int noticeId, int studentId)
+        {
+            NoticePriority? entity = _entityFramework.NoticePriorities
+                .Where(u => u.NoticeId == noticeId && u.StudentId == studentId)
+                .FirstOrDefault<NoticePriority>();
+            return entity;
+        }
+
+        public bool IsRead(int noticeId, int studentId)
+        {
+
+            int? isRead = _entityFramework.IsReads
+                .Where(u => u.NoticeId == noticeId && u.StudentId == studentId)
+                .Count<IsRead>();
+
+            if (isRead == 0) return false;
+
+            return true;
+        }
+
+        public IsRead? IsReadEntity(int noticeId, int studentId)
+        {
+            IsRead? entity = _entityFramework.IsReads
+                .Where(u => u.NoticeId == noticeId && u.StudentId == studentId)
+                .FirstOrDefault<IsRead>();
+            return entity;
+        }
     }
 }
