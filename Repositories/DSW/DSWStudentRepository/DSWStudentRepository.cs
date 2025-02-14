@@ -1,31 +1,31 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Student_Hall_Management.Data;
-using Student_Hall_Management.Dtos;
-using Student_Hall_Management.Dtos.HallAdmin.Student;
 using Student_Hall_Management.Models;
-
 
 namespace Student_Hall_Management.Repositories
 {
-    public class StudentManagementRepository : IStudentManagementRepository
+    public class DSWStudentRepository: IDSWStudentRepository
     {
         DataContextEF _entityFramework;
         DataContextDapper _dapper;
-        public StudentManagementRepository(IConfiguration entityFramework)
+        public DSWStudentRepository(IConfiguration entityFramework)
         {
             _entityFramework = new DataContextEF(entityFramework);
             _dapper = new DataContextDapper(entityFramework);
 
         }
+
         public bool SaveChanges()
         {
             return _entityFramework.SaveChanges() > 0;
         }
 
+
         public async Task<bool> SaveChangesAsync()
         {
             return await _entityFramework.SaveChangesAsync() > 0;
         }
+
 
 
         public void AddEntity<T>(T entityToAdd)
@@ -36,6 +36,8 @@ namespace Student_Hall_Management.Repositories
             }
         }
 
+
+
         public async Task AddEntityAsync<T>(T entityToAdd)
         {
 
@@ -45,6 +47,7 @@ namespace Student_Hall_Management.Repositories
             }
 
         }
+
 
         public void RemoveEntity<T>(T entityToRemove)
         {
@@ -183,73 +186,12 @@ namespace Student_Hall_Management.Repositories
             return rooms;
         }
 
-        public async Task<List<HallDetails>> GetHalls()
-        {
-            List<HallDetails> hallList = _entityFramework.HallDetails.ToList();
+        //GetNotAllotedStudents
 
-            return hallList;
-        }
-
-        public async Task<int> PaymentDue(int hallId)
-        {
-            int hallFeeDue = await _entityFramework.HallFeePayments
-                .Where(h => h.HallId == hallId && h.PaymentStatus=="Not Paid")
-                .Select(h => h.PaymentAmount)
-                .SumAsync();
-            int dinningFeeDue = await _entityFramework.DinningFeePayments
-                .Where(d => d.HallId == hallId && d.PaymentStatus == "Not Paid")
-                .Select(d => d.PaymentAmount)
-                .SumAsync();
-            return hallFeeDue + dinningFeeDue;
-        }
-
-        public async Task<int> DinningAttendence(int hallId)
-        {
-            List<DinningFeePayment> dinningFeePayments = await _entityFramework.DinningFeePayments
-                .Where(d => d.PaymentStatus == "Paid" && d.HallId==hallId)
-                .ToListAsync();
-
-            List<DinningFeePayment> dinningFeePayments1 = await _entityFramework.DinningFeePayments
-                .Where(d => d.PaymentStatus == "Not Paid" && d.HallId==hallId)
-                .ToListAsync();
-            int percentagepaid = 0;
-            try
-            {
-                percentagepaid = (int)(double)(dinningFeePayments.Count / (dinningFeePayments.Count + dinningFeePayments1.Count)) * 100;
-            }
-            catch (DivideByZeroException)
-            {
-                percentagepaid = 0;
-            }
-
-            return  percentagepaid;
-
-
-        }
-
-        public async Task<bool> NotPaidByStudentId(int studentId)
-        {
-            List<HallFeePayment> hallFeePayments = await _entityFramework.HallFeePayments
-                .Where(h => h.StudentId == studentId && h.PaymentStatus == "Not Paid")
-                .ToListAsync();
-            List<DinningFeePayment> dinningFeePayments = await _entityFramework.DinningFeePayments
-                .Where(d => d.StudentId == studentId && d.PaymentStatus == "Not Paid")
-                .ToListAsync();
-
-            if (hallFeePayments.Count > 0 || dinningFeePayments.Count > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        //GetStudentsByHallId
-        public async Task<List<Student>> GetStudentsByHallId(int hallId)
+        public async Task<List<Student>> GetNotAllotedStudents()
         {
             List<Student> students = await _entityFramework.Students
-                .Where(s => s.HallId == hallId)
+                .Where(s => s.HallId==null)
                 .ToListAsync();
             return students;
         }

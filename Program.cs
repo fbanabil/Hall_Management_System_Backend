@@ -28,7 +28,7 @@ builder.Services.AddCors((options) =>
 {
     options.AddPolicy("DevCors", (corsBuilder) =>
     {
-        corsBuilder.WithOrigins("http://localhost:3000", "http://localhost:4200", "https://localhost:5174", "http://localhost:5174", "http://localhost:5173","https://localhost:5173")
+        corsBuilder.WithOrigins("http://localhost:3000", "http://localhost:4200", "http://localhost:5173","https://localhost:5173")
             .AllowAnyMethod()
             .AllowAnyHeader()
             .AllowCredentials();
@@ -63,6 +63,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 
+
+
+
+
+
 builder.Services.AddScoped<IRegistrationRepository, RegistrationRepository>();
 builder.Services.AddScoped<ILoginRepository, LoginRepository>();
 builder.Services.AddScoped<IProfileRepository,ProfileRepository>();
@@ -79,6 +84,13 @@ builder.Services.AddScoped<INoticeManagementRepository,NoticeManagementRepositor
 builder.Services.AddScoped<IComplaintManagementRepository, ComplaintManagementRepository>();
 builder.Services.AddScoped<IAdminPaymentRepository, AdminPaymentRepository>();
 builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+builder.Services.AddScoped<IHallOverviewRepository, HallOverviewRepository>();
+builder.Services.AddScoped<IDSWStudentRepository,DSWStudentRepository>();
+builder.Services.AddScoped<IHallManagementRepository,HallManagementRepository>();
+builder.Services.AddScoped<IChatRepository,ChatRepository>();
+
+
+builder.Services.AddHostedService<StartupTask>();
 
 
 var app = builder.Build();

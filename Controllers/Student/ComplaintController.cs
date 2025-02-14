@@ -118,6 +118,7 @@ namespace Student_Hall_Management.Controllers
             _complaintRepository.AddEntity<Comment>(comment);
             if (_complaintRepository.SaveChanges())
             {
+
                 CommentToShowDto commentToShow = _mapper.Map<CommentToShowDto>(comment);
                 return Ok(commentToShow);
             }
@@ -154,6 +155,7 @@ namespace Student_Hall_Management.Controllers
                 if (!string.IsNullOrEmpty(c.ImageData))
                 {
                     complaintToShow.ImageData = Convert.ToBase64String(System.IO.File.ReadAllBytes(c.ImageData));
+                    //Console.WriteLine(complaintToShow.ImageData);
                 }
                 if (!string.IsNullOrEmpty(c.FileData))
                 {

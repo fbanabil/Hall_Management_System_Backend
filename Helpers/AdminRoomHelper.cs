@@ -55,6 +55,18 @@ namespace Student_Hall_Management.Helpers
             {
                 AdminRoomToShowDto adminRoomToShowDto = new AdminRoomToShowDto();
                 _mapper.Map(room, adminRoomToShowDto);
+                if(room.OccupiedSeats > 0 && room.OccupiedSeats < room.HasSeats)
+                {
+                    adminRoomToShowDto.RoomStatus = "Partial Occupied";
+                }
+                else if (room.OccupiedSeats == 0)
+                {
+                    adminRoomToShowDto.RoomCondition = "Un-Occupied";
+                }
+                else
+                {
+                    adminRoomToShowDto.RoomCondition = "Occupied";
+                }
                 adminRoomToShowDtos.Add(adminRoomToShowDto);
 
             }

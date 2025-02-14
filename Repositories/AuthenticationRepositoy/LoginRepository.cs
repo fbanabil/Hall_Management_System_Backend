@@ -77,5 +77,20 @@ namespace Student_Hall_Management.Repositories
                 _entityFramework.SaveChanges();
             }
         }
+        //GetSingleDSW
+        public DSW GetSingleDSW(string email)
+        {
+            DSW? dSW = _entityFramework.DSW
+                .Where(u => u.Email == email)
+                .FirstOrDefault<DSW>();
+            if (dSW != null)
+            {
+                return dSW;
+            }
+            return null;
+        }
+
+        //UpdateActivity(false, email);
+
     }
 }

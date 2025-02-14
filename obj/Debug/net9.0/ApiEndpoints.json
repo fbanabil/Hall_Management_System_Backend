@@ -226,6 +226,42 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Student_Hall_Management.Controllers.ChatController",
+    "Method": "AddChat",
+    "RelativePath": "Chat/AddChat",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "chatDto",
+        "Type": "Student_Hall_Management.Dtos.ChatToAddDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.ChatController",
+    "Method": "GetChats",
+    "RelativePath": "Chat/GetChats",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.ChatController",
+    "Method": "UpdateChat",
+    "RelativePath": "Chat/Update",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Student_Hall_Management.Controllers.ComplaintController",
     "Method": "AddComment",
     "RelativePath": "Complaint/AddComment/{ComplaintId}",
@@ -294,6 +330,172 @@
     ]
   },
   {
+    "ContainingType": "Student_Hall_Management.Controllers.DSWHallOverview",
+    "Method": "GetHallOverview",
+    "RelativePath": "DSWHallOverview/GetHallOverview/{hallId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "hallId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.DSWHallOverview",
+    "Method": "GetHalls",
+    "RelativePath": "DSWHallOverview/Halls",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.DSWStudentController",
+    "Method": "AssignRoom",
+    "RelativePath": "DSWStudent/AssignRoom/{studentId}/{roomNo}/{hallId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "roomNo",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "hallId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.DSWStudentController",
+    "Method": "DeleteStudent",
+    "RelativePath": "DSWStudent/DeleteStudent/{studentId}/{hallId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "hallId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.DSWStudentController",
+    "Method": "GetAvailableRooms",
+    "RelativePath": "DSWStudent/GetAvailableRooms/{hallId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "hallId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Student_Hall_Management.Dtos.AvailableRoomsDto, Student Hall Management, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.DSWStudentController",
+    "Method": "GetStudentManagementPage",
+    "RelativePath": "DSWStudent/GetStudentManagementPage/{hallId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "hallId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Student_Hall_Management.Dtos.HallAdmin.Student.StudentManagementPageDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.DSWStudentController",
+    "Method": "GetHalls",
+    "RelativePath": "DSWStudent/Halls",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.DSWStudentController",
+    "Method": "StudentsToAddSuggestion",
+    "RelativePath": "DSWStudent/StudentsToAddSuggestion",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.DSWStudentController",
+    "Method": "StudentToHall",
+    "RelativePath": "DSWStudent/StudentToHall/{studentId}/{hallId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "hallId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Student_Hall_Management.Controllers.HallDetailsManagement",
     "Method": "AddHallDetails",
     "RelativePath": "HallDetailsManagement/AddHallDetails",
@@ -303,7 +505,7 @@
     "Parameters": [
       {
         "Name": "hallToAddDto",
-        "Type": "Student_Hall_Management.Dtos.DSW.HallToAddDto",
+        "Type": "Student_Hall_Management.Dtos.HallToAddDto",
         "IsRequired": true
       }
     ],
@@ -323,6 +525,32 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.HallManagementController",
+    "Method": "AddHall",
+    "RelativePath": "HallManagement/AddHall",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "hallDetails",
+        "Type": "Student_Hall_Management.Dtos.HallToAddDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.HallManagementController",
+    "Method": "GetHalls",
+    "RelativePath": "HallManagement/GetHalls",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -656,6 +884,22 @@
       {
         "Name": "hallAdmin",
         "Type": "Student_Hall_Management.Dtos.HallAdminToAdd",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Student_Hall_Management.Controllers.RegistrationController",
+    "Method": "AddDSW",
+    "RelativePath": "Registration/AddDSW",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dsw",
+        "Type": "Student_Hall_Management.Dto.DSWToAddDto",
         "IsRequired": true
       }
     ],

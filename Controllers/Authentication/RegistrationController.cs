@@ -6,10 +6,11 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Student_Hall_Management.Repositories;
 using System.Security.Cryptography;
+using Student_Hall_Management.Dto;
 
 namespace Student_Hall_Management.Controllers
 {
-    [Authorize]
+    [Authorize()]
     [ApiController]
     [Route("/[controller]")]
     public class RegistrationController : ControllerBase
@@ -21,9 +22,9 @@ namespace Student_Hall_Management.Controllers
         private readonly EmailService _emailService;
         private readonly AuthenticatioHelper _authenticatioHelper;
 
-        public RegistrationController(IConfiguration config,IRegistrationRepository registrationRepository,EmailService emailService)
+        public RegistrationController(IConfiguration config, IRegistrationRepository registrationRepository, EmailService emailService)
         {
-            _registrationRepository= registrationRepository;
+            _registrationRepository = registrationRepository;
             _presentDateTime = new PresentDateTime(config);
             _emailService = emailService;
             _authenticatioHelper = new AuthenticatioHelper(config);
@@ -106,7 +107,7 @@ namespace Student_Hall_Management.Controllers
             try
             {
                 Console.WriteLine("Your 6 digit verification code is: " + verificationCode);
-                _emailService.SendEmail(student.Email, "Verification Code", "Your 6 digit verification code is: " + verificationCode);
+                //_emailService.SendEmail(student.Email, "Verification Code", "Your 6 digit verification code is: " + verificationCode);
             }
             catch (Exception ex)
             {
@@ -114,7 +115,7 @@ namespace Student_Hall_Management.Controllers
                 return BadRequest(new { message = "Failed to send verification code. Please try again later." });
             }
 
-            return Ok(new {message="6 DigitVerification Code in your email:"});
+            return Ok(new { message = "6 DigitVerification Code in your email:" });
         }
 
 
@@ -140,14 +141,14 @@ namespace Student_Hall_Management.Controllers
             }
 
 
-            Student studentToAdd=new Student();
-            
+            Student studentToAdd = new Student();
+
 
             //Console.WriteLine(studentToAdd.ImageData);
- 
+
 
             string base64Data = student.ImageData;
-            
+
             if (base64Data.StartsWith("data:image", StringComparison.OrdinalIgnoreCase))
             {
                 int commaIndex = base64Data.IndexOf(',');
@@ -158,11 +159,11 @@ namespace Student_Hall_Management.Controllers
             }
             byte[] imageBytes = Convert.FromBase64String(base64Data);
 
-            
 
-            string folderPath = Path.Combine(Directory.GetCurrentDirectory(),"Assets","Images", student.Email.Substring(1,2));
 
-            if(!Directory.Exists(folderPath))
+            string folderPath = Path.Combine(Directory.GetCurrentDirectory(), "Assets", "Images", student.Email.Substring(1, 2));
+
+            if (!Directory.Exists(folderPath))
             {
                 Directory.CreateDirectory(folderPath);
             }
@@ -188,10 +189,10 @@ namespace Student_Hall_Management.Controllers
             studentToAdd.Batch = Convert.ToInt32(student.Email.Substring(1, 2));
 
 
-            byte[] passwordSalt=new byte[128/8];
+            byte[] passwordSalt = new byte[128 / 8];
             using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
-            { 
-                rng.GetBytes(passwordSalt); 
+            {
+                rng.GetBytes(passwordSalt);
             }
 
             byte[] passwordHash = _authenticatioHelper.GetPasswordHash(student.Password, passwordSalt);
@@ -206,7 +207,7 @@ namespace Student_Hall_Management.Controllers
             //Console.WriteLine(studentToAdd.Department);
             //Console.WriteLine(studentToAdd.ImageData);
             //Console.WriteLine(studentToAdd.Role);
-            
+
 
 
             _registrationRepository.AddStudentAuthentication(studentAuthentication);
@@ -232,7 +233,7 @@ namespace Student_Hall_Management.Controllers
         {
             string email = _registrationRepository.GetHallAdmin(hallAdmin.Email);
 
-            if (email!=null)
+            if (email != null)
             {
                 return BadRequest("Admin Already Exists");
             }
@@ -271,11 +272,39 @@ namespace Student_Hall_Management.Controllers
 
             if (_registrationRepository.SaveChanges())
             {
-                return Ok("Admin added successfully");
+                return Ok(new { message = "Admin added successfully" });
             }
             return BadRequest("Something Went Wrong");
 
         }
 
+
+        [AllowAnonymous]
+        [HttpPost("AddDSW")]
+        public IActionResult AddDSW([FromBody] DSWToAddDto dsw)
+        {
+            DSW dswDb = new DSW();
+            dswDb.Email = dsw.Email;
+
+
+            byte[] passwordSalt = new byte[128 / 8];
+            using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(passwordSalt);
+            }
+
+            byte[] passwordHash = _authenticatioHelper.GetPasswordHash(dsw.Password, passwordSalt);
+            dswDb.PasswordHash = passwordHash; dswDb.PasswordSalt = passwordSalt;
+
+            _registrationRepository.AddEntity<DSW>(dswDb);
+            _registrationRepository.SaveChanges();
+            return Ok(
+                new
+                {
+                    message = "DSW added successfully"
+                }
+            );
+
+        }
     }
 }

@@ -7,11 +7,12 @@ using Student_Hall_Management.Dtos.HallAdmin;
 using Student_Hall_Management.Helpers;
 using Student_Hall_Management.Models;
 using Student_Hall_Management.Repositories;
+using System.Security.Claims;
 
 
 namespace Student_Hall_Management.Controllers
 {
-    [Authorize(Roles = "Student,HallAdmin")]
+    [Authorize(Roles = "Student,HallAdmin,DSW")]
     [ApiController]
     [Route("/[controller]")]
     public class LoginController : ControllerBase
@@ -101,6 +102,35 @@ namespace Student_Hall_Management.Controllers
                 Console.WriteLine(token);
                 return Ok(new { message = "Login Success", token });
             }
+
+            else if(user.Role =="DSW")
+            {
+                DSW dSW = _loginRepository.GetSingleDSW(user.Email);
+                if (dSW == null)
+                {
+                    return BadRequest(new { message = "User doesn't exist" });
+                }
+                byte[] passwordHash = _authenticatioHelper.GetPasswordHash(user.Password, dSW.PasswordSalt);
+                if (dSW.PasswordHash.Length != passwordHash.Length)
+                {
+                    return BadRequest(new { message = "Invalid Password" });
+                }
+                for (int i = 0; i < passwordHash.Length; i++)
+                {
+                    if (passwordHash[i] != dSW.PasswordHash[i])
+                    {
+                        return BadRequest(new { message = "Invalid Password" });
+                    }
+                }
+
+                var roles = new List<string> { "DSW" };
+                string token = _authenticatioHelper.CreateToken(user.Email, roles);
+                Console.WriteLine(token);
+                return Ok(new { message = "Login Success", token });
+
+            }
+
+
             return BadRequest(new { message = "Functionality isn't Complete" });
         }
 
@@ -125,8 +155,16 @@ namespace Student_Hall_Management.Controllers
         public IActionResult Logout()
         {
             var token = Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+            string? email = User.FindFirst("userEmail")?.Value;
+            var roles = User.FindAll(ClaimTypes.Role).Select(r => r.Value).ToList();
+
             if (token != null)
             {
+                if(roles.Contains("Student"))
+                {
+                    _loginRepository.UpdateActivity(false, email);
+
+                }
                 _tokenBlacklistRepository.AddTokenToBlacklist(token);
             }
             return Ok(new { message = "Logout Success" });

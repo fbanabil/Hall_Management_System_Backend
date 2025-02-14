@@ -45,6 +45,7 @@ namespace Student_Hall_Management.Controllers
             string email = User.FindFirst("userEmail")?.Value;
             int? hallId = await _complaintManagementRepository.GetHallId(email);
             IEnumerable<ComplaintToShowDto> complaints = await _adminComplaintHelper.ComplaintToShow(hallId.Value);
+            
             return Ok(complaints);
         }
 

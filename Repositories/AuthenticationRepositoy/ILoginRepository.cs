@@ -11,6 +11,7 @@ namespace Student_Hall_Management.Repositories
         public StudentAuthentication GetSingleStudentAuthentication(string email);
         public HallAdminAuthentication GetSingleHallAdminAuthentication(string email);
         public  Task UpdateActivity(bool isActive, string email);
+        public DSW GetSingleDSW(string email);
 
 
     }

@@ -353,6 +353,61 @@
         }
       }
     },
+    "/Chat/GetChats": {
+      "get": {
+        "tags": [
+          "Chat"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Chat/AddChat": {
+      "post": {
+        "tags": [
+          "Chat"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatToAddDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatToAddDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatToAddDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Chat/Update": {
+      "post": {
+        "tags": [
+          "Chat"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Complaint/AddComplaint": {
       "post": {
         "tags": [
@@ -484,6 +539,258 @@
         }
       }
     },
+    "/DSWHallOverview/Halls": {
+      "get": {
+        "tags": [
+          "DSWHallOverview"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/DSWHallOverview/GetHallOverview/{hallId}": {
+      "get": {
+        "tags": [
+          "DSWHallOverview"
+        ],
+        "parameters": [
+          {
+            "name": "hallId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/DSWStudent/GetStudentManagementPage/{hallId}": {
+      "get": {
+        "tags": [
+          "DSWStudent"
+        ],
+        "parameters": [
+          {
+            "name": "hallId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentManagementPageDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentManagementPageDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentManagementPageDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/DSWStudent/DeleteStudent/{studentId}/{hallId}": {
+      "delete": {
+        "tags": [
+          "DSWStudent"
+        ],
+        "parameters": [
+          {
+            "name": "studentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "hallId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/DSWStudent/AssignRoom/{studentId}/{roomNo}/{hallId}": {
+      "post": {
+        "tags": [
+          "DSWStudent"
+        ],
+        "parameters": [
+          {
+            "name": "studentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "roomNo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "hallId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/DSWStudent/GetAvailableRooms/{hallId}": {
+      "get": {
+        "tags": [
+          "DSWStudent"
+        ],
+        "parameters": [
+          {
+            "name": "hallId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AvailableRoomsDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AvailableRoomsDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AvailableRoomsDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/DSWStudent/Halls": {
+      "get": {
+        "tags": [
+          "DSWStudent"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/DSWStudent/StudentToHall/{studentId}/{hallId}": {
+      "put": {
+        "tags": [
+          "DSWStudent"
+        ],
+        "parameters": [
+          {
+            "name": "studentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "hallId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/DSWStudent/StudentsToAddSuggestion": {
+      "get": {
+        "tags": [
+          "DSWStudent"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/HallDetailsManagement/AddHallDetails": {
       "post": {
         "tags": [
@@ -535,6 +842,49 @@
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/HallToEditDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/HallManagement/GetHalls": {
+      "get": {
+        "tags": [
+          "HallManagement"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/HallManagement/AddHall": {
+      "post": {
+        "tags": [
+          "HallManagement"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HallToAddDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HallToAddDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/HallToAddDto"
               }
             }
           }
@@ -1137,6 +1487,37 @@
         }
       }
     },
+    "/Registration/AddDSW": {
+      "post": {
+        "tags": [
+          "Registration"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DSWToAddDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DSWToAddDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DSWToAddDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Room/GetRoomData": {
       "get": {
         "tags": [
@@ -1482,6 +1863,16 @@
         },
         "additionalProperties": false
       },
+      "ChatToAddDto": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "CommentToAddDto": {
         "type": "object",
         "properties": {
@@ -1601,6 +1992,20 @@
             "items": {
               "$ref": "#/components/schemas/CommentToShowDto"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DSWToAddDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -1816,14 +2221,6 @@
           "hallName": {
             "type": "string",
             "nullable": true
-          },
-          "institution": {
-            "type": "string",
-            "nullable": true
-          },
-          "totalSeats": {
-            "type": "integer",
-            "format": "int32"
           },
           "hallType": {
             "type": "string",

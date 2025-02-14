@@ -65,6 +65,7 @@ namespace Student_Hall_Management.Helpers
 
                 complaintToShowDtos.Add(complaintToShow);
             }
+            complaintToShowDtos.Reverse();
             return complaintToShowDtos;
         }
     }

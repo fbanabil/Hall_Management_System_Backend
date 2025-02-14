@@ -24,12 +24,19 @@ namespace Student_Hall_Management.Helpers
         }
 
 
-        public async Task<StudentManagementPageDto> GetStudentManagementPage(int hallId)
+        public async Task<StudentManagementPageDto?> GetStudentManagementPage(int hallId)
         {
+            List<Student> students1=await _studentManagementRepository.GetStudentsByHallId(hallId);
+            if(students1.Count == 0)
+            {
+                return null;
+            }
             Tuple<int, int> TotalStudentAndIsActive = await Task.Run(() => _studentManagementRepository.GetTotalStudentAndIsActive(hallId));
             StudentManagementPageDto studentManagementPageDto = new StudentManagementPageDto();
             studentManagementPageDto.TotalStudents = TotalStudentAndIsActive.Item1;
             studentManagementPageDto.ActiveStudents = TotalStudentAndIsActive.Item2;
+            studentManagementPageDto.PaymentDue = await Task.Run(() => _studentManagementRepository.PaymentDue(hallId));
+            studentManagementPageDto.DinningAttendenceInPercent = await Task.Run(() => _studentManagementRepository.DinningAttendence(hallId));
 
             IEnumerable<Student> students = new List<Student>();
 
@@ -37,14 +44,16 @@ namespace Student_Hall_Management.Helpers
 
             students = students.ToList();
 
-            List<StudentToShowDto> studentToShowDtos = new List<StudentToShowDto>();
+            List<StudentToShowDto?> studentToShowDtos = new List<StudentToShowDto?>();
 
 
             foreach (var student in students)
             {
                 StudentToShowDto studentToShowDto = new StudentToShowDto();
                 _mapper.Map(student, studentToShowDto);
-                studentToShowDto.PaymentStatus = "Paid";
+                bool notPaid = await Task.Run(() => _studentManagementRepository.NotPaidByStudentId(student.Id));
+                if(!notPaid) studentToShowDto.PaymentStatus = "Paid";
+                else studentToShowDto.PaymentStatus = "Not Paid";
                 studentToShowDto.Image = Convert.ToBase64String(System.IO.File.ReadAllBytes(studentToShowDto.Image));
                 studentToShowDtos.Add(studentToShowDto);
             }

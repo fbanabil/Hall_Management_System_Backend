@@ -11,13 +11,8 @@ namespace Student_Hall_Management.Data
             _config = config;
 
         }
-
-        
-        public virtual DbSet<StudentAuthentication> StudentAuthentication { get; set; }
-        
+        public virtual DbSet<StudentAuthentication> StudentAuthentication { get; set; }        
         public virtual DbSet<StudentPendingRequest> StudentPendingRequest { get; set; }
-
-
 
         //Student
         public virtual DbSet<Student> Students { get; set; }
@@ -40,6 +35,9 @@ namespace Student_Hall_Management.Data
         public virtual DbSet<IsRead> IsReads { get; set; }
         public virtual DbSet<AssignedHallFee> AssignedHallFees { get; set; }
         public virtual DbSet<AssignedDinningFee> AssignedDinningFees { get; set; }
+        public virtual DbSet<DSW> DSW { get; set; }
+
+        public virtual DbSet<StudentsMessage> StudentsMessages { get; set; }
 
 
         //public virtual DbSet<UserJobInfo> UserJobInfo { get; set; }
@@ -273,9 +271,22 @@ namespace Student_Hall_Management.Data
 
 
 
+            modelBuilder.Entity<DSW>()
+                .ToTable("DSW", "HallManagementSchema")
+                .HasKey(u => u.Email);
 
 
 
+            modelBuilder.Entity<StudentsMessage>()
+                .ToTable("StudentsMessage", "HallManagementSchema")
+                .HasKey(u => u.Id);
+
+            modelBuilder.Entity<StudentsMessage>()
+                .HasOne<Student>()
+                .WithMany()
+                .HasForeignKey(h => h.Sender);
+
+        
 
 
             //modelBuilder.Entity<Image>()

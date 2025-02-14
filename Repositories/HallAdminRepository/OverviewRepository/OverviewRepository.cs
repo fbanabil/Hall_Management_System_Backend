@@ -110,7 +110,7 @@ namespace Student_Hall_Management.Repositories
         public async Task<Tuple<int, int, int>> GetComplaintStatusCount(int? hallId)
         {
             int inprogressComplaints = await _entityFramework.Complaints
-                .Where(c => c.HallId == hallId && c.Status == "In-Progress")
+                .Where(c => c.HallId == hallId && c.Status == "In Progress")
                 .CountAsync();
             int pendingComplaints = await _entityFramework.Complaints
                 .Where(c => c.HallId == hallId && c.Status == "Pending")

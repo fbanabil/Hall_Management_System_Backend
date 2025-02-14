@@ -1,9 +1,8 @@
 ﻿using Student_Hall_Management.Models;
 
-
-namespace Student_Hall_Management.Repositories 
-{ 
-    public interface IStudentManagementRepository
+namespace Student_Hall_Management.Repositories
+{
+    public interface IDSWStudentRepository
     {
         public bool SaveChanges();
         public void AddEntity<T>(T entityToAdd);
@@ -28,16 +27,7 @@ namespace Student_Hall_Management.Repositories
         public Task<StudentAuthentication> StudentAuthentication(string email);
         public Task<Room> GetRoomByRoomNoAndHallId(string roomNo, int hallId);
         public Task<IEnumerable<Room>> GetAvailableRooms(int hallId);
-
-        public  Task<List<HallDetails>> GetHalls();
-        public Task<int> PaymentDue(int hallId);
-        public Task<int> DinningAttendence(int hallId);
-        public Task<bool> NotPaidByStudentId(int studentId);
-
-        public  Task<List<Student>> GetStudentsByHallId(int hallId);
-
-
-
+        public Task<List<Student>> GetNotAllotedStudents();
 
     }
 }

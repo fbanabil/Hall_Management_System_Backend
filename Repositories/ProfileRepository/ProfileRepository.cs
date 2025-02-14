@@ -89,6 +89,14 @@ namespace Student_Hall_Management.Repositories
                 .FirstOrDefault<StudentAuthentication>();
             return studentAuthentication;
         }
+        //Get all students
+
+        public  List<Student> GetAllStudents()
+        {
+            List<Student> students = _entityFramework.Students
+                .ToList();
+            return students;
+        }
     }
 }
 
