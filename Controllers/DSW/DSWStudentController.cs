@@ -23,29 +23,32 @@ namespace Student_Hall_Management.Controllers
         private readonly AdminStudentManagementHelper _adminStudentManagementHelper;
         private readonly DSWStudentRepository _dSWStudentRepository;
 
+        private readonly ILogger<DSWStudentController> _logger;
 
-        public DSWStudentController(IStudentManagementRepository studentManagementRepository, IPresentDateTime presentDateTime,IDSWStudentRepository dSWStudentRepository)
+        public DSWStudentController(IStudentManagementRepository studentManagementRepository, IPresentDateTime presentDateTime,IDSWStudentRepository dSWStudentRepository, ILogger<DSWStudentController> logger)
         {
             _studentManagementRepository = studentManagementRepository;
             _adminStudentManagementHelper = new AdminStudentManagementHelper(_studentManagementRepository);
             _dSWStudentRepository = (DSWStudentRepository)dSWStudentRepository;
             _presentDateTime = presentDateTime;
+            _logger = logger;
             _mapper = new MapperConfiguration(cfg =>
             {
 
             }).CreateMapper();
+            _logger = logger;
         }
 
 
         [HttpGet("GetStudentManagementPage/{hallId}")]
-        public async Task<ActionResult<StudentManagementPageDto>> GetStudentManagementPage(int hallId)
+        public async Task<IActionResult> GetStudentManagementPage(int hallId)
         {
             string email = User.FindFirst("userEmail")?.Value;
             var roles = User.FindAll(ClaimTypes.Role).Select(r => r.Value).ToList();
 
            
             //int? hallId = await _studentManagementRepository.GetHallId(email);
-
+            _logger.LogInformation("Fetching student management page for hallId: {HallId}", hallId);
             if (hallId == null)
             {
                 return BadRequest("Hall Id not found");
@@ -53,9 +56,11 @@ namespace Student_Hall_Management.Controllers
 
             StudentManagementPageDto studentManagementPageDto = new StudentManagementPageDto();
             studentManagementPageDto = await _adminStudentManagementHelper.GetStudentManagementPage(hallId);
-            if(studentManagementPageDto == null) {
-                return BadRequest("No student found");
-            }
+            //show studentMAnagementPageDto in log
+            _logger.LogInformation("Student Management Page Data: {@StudentManagementPageDto}", studentManagementPageDto);
+            //if(studentManagementPageDto == null) {
+            //    return BadRequest("No student found");
+            //}
             return Ok(studentManagementPageDto);
 
         }

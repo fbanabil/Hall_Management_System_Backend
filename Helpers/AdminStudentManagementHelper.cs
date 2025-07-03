@@ -27,10 +27,10 @@ namespace Student_Hall_Management.Helpers
         public async Task<StudentManagementPageDto?> GetStudentManagementPage(int hallId)
         {
             List<Student> students1=await _studentManagementRepository.GetStudentsByHallId(hallId);
-            if(students1.Count == 0)
-            {
-                return null;
-            }
+            //if(students1.Count == 0)
+            //{
+            //    return null;
+            //}
             Tuple<int, int> TotalStudentAndIsActive = await Task.Run(() => _studentManagementRepository.GetTotalStudentAndIsActive(hallId));
             StudentManagementPageDto studentManagementPageDto = new StudentManagementPageDto();
             studentManagementPageDto.TotalStudents = TotalStudentAndIsActive.Item1;
@@ -63,6 +63,8 @@ namespace Student_Hall_Management.Helpers
             return studentManagementPageDto;
 
         }
+
+
 
         public async Task<bool> DeleteStudent(int studentId)
         {

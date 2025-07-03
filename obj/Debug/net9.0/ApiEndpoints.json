@@ -442,17 +442,7 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "Student_Hall_Management.Dtos.HallAdmin.Student.StudentManagementPageDto",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "Student_Hall_Management.Controllers.DSWStudentController",

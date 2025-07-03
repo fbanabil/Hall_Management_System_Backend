@@ -60,7 +60,7 @@ namespace Student_Hall_Management.Controllers
                 student.ImageData = Convert.ToBase64String(System.IO.File.ReadAllBytes(student.ImageData));
                 ProfileToShowDto studentToShow = _mapper.Map<ProfileToShowDto>(student);
 
-                if (student.HallId == 0)
+                if (student.HallId == null)
                 {
                     studentToShow.HallName = "No Hall Alloted";
                 }
