@@ -38,7 +38,7 @@ A web-based Hall Management System designed to manage student accommodation, roo
 
 # Fill SMTP settings in appsettings.json file for email notifications
 
-# Run the backend server using Visual Studio or command line (dotnet run)
+# Run the backend server using Visual Studio (Run on port 7057)
 
 # Navigate to the frontend directory (If using the frontend repository)
 
@@ -51,3 +51,32 @@ A web-based Hall Management System designed to manage student accommodation, roo
 # DSW admin must needed for full functionality including creation off Hall Admin. Hit /Registration/AddDSW endpoint in swagger/postman to create DSW admin
 
 ```
+
+## 📄 appsettings.json Format
+
+```bash
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=ServerName;Database=DatabaseName;Trusted_Connection=true;TrustServerCertificate=true"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "AppSettings": {
+    "PasswordKey": "",
+    "TokenKey": ""
+  },
+  "SmtpSettings": {
+    "Server": "smtp.gmail.com",
+    "Port": 587,
+    "SenderName": "",
+    "SenderEmail": "",
+    "Username": "",
+    "Password": ""
+  }
+}
+...
