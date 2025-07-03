@@ -37,7 +37,7 @@ namespace Student_Hall_Management.Controllers
             List<ChatToShowDto> chatToShowDtos = new List<ChatToShowDto>();
             string email = User.FindFirst("userEmail")?.Value;
             Student student = await _chatRepository.GetStudentByEmail(email);
-            List<StudentsMessage> chats = await _chatRepository.GetChats(student.HallId);
+            List<StudentsMessage>? chats = await _chatRepository.GetChats(student.HallId);
 
             foreach (var chat in chats)
             {

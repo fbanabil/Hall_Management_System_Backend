@@ -53,12 +53,16 @@ namespace Student_Hall_Management.Controllers
                 return BadRequest(new { message = "Password and Confirm Password do not match" });
             }
 
+
+            // Email specific Constraints
             string email = "u" + student.Id.ToString() + "@student.cuet.ac.bd";
 
-            if (student.Email != email)
-            {
-                return BadRequest(new { message = "Id and Email doesn't match" });
-            }
+            // Can be commened out
+
+            //if (student.Email != email)
+            //{
+            //    return BadRequest(new { message = "Id and Email doesn't match" });
+            //}
 
             if (student.Password.Length < 8)
             {
@@ -67,7 +71,7 @@ namespace Student_Hall_Management.Controllers
 
 
             StudentPendingRequest request = _registrationRepository.PendingRequest(student.Email);
-            //Console.WriteLine(_presentDateTime.GetPresentDateTime());
+
             if (request != null)
             {
                 DateTime currentTime = _presentDateTime.GetPresentDateTime();
@@ -107,7 +111,7 @@ namespace Student_Hall_Management.Controllers
             try
             {
                 Console.WriteLine("Your 6 digit verification code is: " + verificationCode);
-                //_emailService.SendEmail(student.Email, "Verification Code", "Your 6 digit verification code is: " + verificationCode);
+                _emailService.SendEmail(student.Email, "Verification Code", "Your 6 digit verification code is: " + verificationCode);
             }
             catch (Exception ex)
             {
@@ -117,11 +121,6 @@ namespace Student_Hall_Management.Controllers
 
             return Ok(new { message = "6 DigitVerification Code in your email:" });
         }
-
-
-
-
-
 
 
         [AllowAnonymous]
@@ -186,8 +185,7 @@ namespace Student_Hall_Management.Controllers
             studentToAdd.RoomNo = null;
             studentToAdd.HallId = null;
             studentToAdd.IsActive = false;
-            studentToAdd.Batch = Convert.ToInt32(student.Email.Substring(1, 2));
-
+            studentToAdd.Batch = Convert.ToInt32(student.Id.ToString().Substring(0, 2));
 
             byte[] passwordSalt = new byte[128 / 8];
             using (RandomNumberGenerator rng = RandomNumberGenerator.Create())

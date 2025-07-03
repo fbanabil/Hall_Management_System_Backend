@@ -1,30 +1,34 @@
-﻿using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.DependencyInjection;
-using Student_Hall_Management.Repositories;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using Student_Hall_Management.Repositories;
 using Student_Hall_Management.Models;
+using System.Data.SqlClient;
+using System.Data;
+using Dapper;
 
 public class StartupTask : IHostedService
 {
+
     private readonly IServiceScopeFactory _serviceScopeFactory;
     private readonly ILogger<StartupTask> _logger;
+    private readonly IConfiguration _config;
 
-    public StartupTask(IServiceScopeFactory serviceScopeFactory, ILogger<StartupTask> logger)
+    public StartupTask(IServiceScopeFactory serviceScopeFactory, ILogger<StartupTask> logger,IConfiguration config)
     {
         _serviceScopeFactory = serviceScopeFactory;
         _logger = logger;
+        _config = config;
     }
+
 
     public async Task StartAsync(CancellationToken cancellationToken)
     {
         _logger.LogInformation("StartupTask is starting.");
         try
         {
-            // Your logic to run once at startup
-            await RunStartupTask();
+            await Task.WhenAll
+                (
+                    RunSqlScriptAsync(),
+                    RunStartupTask()
+                );
         }
         catch (Exception ex)
         {
@@ -32,20 +36,22 @@ public class StartupTask : IHostedService
         }
     }
 
+
     public Task StopAsync(CancellationToken cancellationToken)
     {
         _logger.LogInformation("StartupTask is stopping.");
         return Task.CompletedTask;
     }
 
+
     private async Task RunStartupTask()
     {
+
         _logger.LogInformation("Running startup task.");
 
         using (var scope = _serviceScopeFactory.CreateScope())
         {
             var profileRepository = scope.ServiceProvider.GetRequiredService<IProfileRepository>();
-
             List<Student> students = profileRepository.GetAllStudents();
 
             foreach (var student in students)
@@ -64,6 +70,34 @@ public class StartupTask : IHostedService
             }
         }
 
-        // For example, you can call a method from _profileRepository
     }
+
+
+    [Obsolete]
+    private async Task RunSqlScriptAsync()
+    {
+        var sqlFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "database.sql");
+
+        if (!File.Exists(sqlFilePath))
+        {
+            _logger.LogWarning($"SQL file not found: {sqlFilePath}");
+            return;
+        }
+
+        var sqlScript = await File.ReadAllTextAsync(sqlFilePath);
+        var connectionString = _config.GetConnectionString("DefaultConnection");
+    
+        try
+        {
+            IDbConnection connection = new SqlConnection(connectionString);
+            await connection.ExecuteAsync(sqlScript);
+
+            _logger.LogInformation("SQL script executed successfully.");
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error executing SQL script.");
+        }
+    }
+
 }

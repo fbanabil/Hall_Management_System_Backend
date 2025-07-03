@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Student Hall Management",
-    "version": "1.0"
+    "title": "Student Hall Management API",
+    "version": "v1"
   },
   "paths": {
     "/AdminComplaint/AdminComplaintOverview": {
@@ -2684,6 +2684,19 @@
         },
         "additionalProperties": false
       }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "Enter 'Bearer {your JWT token}'",
+        "scheme": "Bearer",
+        "bearerFormat": "JWT"
+      }
     }
-  }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
 }

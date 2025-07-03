@@ -13,8 +13,6 @@ namespace Student_Hall_Management.Data
         }
         public virtual DbSet<StudentAuthentication> StudentAuthentication { get; set; }        
         public virtual DbSet<StudentPendingRequest> StudentPendingRequest { get; set; }
-
-        //Student
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
         public virtual DbSet<HallDetails> HallDetails { get; set; }
@@ -23,26 +21,17 @@ namespace Student_Hall_Management.Data
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Notice> Notices { get; set; }
         public virtual DbSet<HallAdminAuthentication> HallAdminAuthentications { get; set; }
-
         public virtual DbSet<PendingRoomRequest> PendingRoomRequests { get; set; }
-
         public virtual DbSet<HallReview> HallReviews { get; set; }
-
         public virtual DbSet<HallFeePayment>  HallFeePayments { get; set; }
         public virtual DbSet<DinningFeePayment> DinningFeePayments { get; set; }
-
         public virtual DbSet<NoticePriority> NoticePriorities { get; set; }
         public virtual DbSet<IsRead> IsReads { get; set; }
         public virtual DbSet<AssignedHallFee> AssignedHallFees { get; set; }
         public virtual DbSet<AssignedDinningFee> AssignedDinningFees { get; set; }
         public virtual DbSet<DSW> DSW { get; set; }
-
         public virtual DbSet<StudentsMessage> StudentsMessages { get; set; }
 
-
-        //public virtual DbSet<UserJobInfo> UserJobInfo { get; set; }
-
-        //public virtual DbSet<UserSalary> UserSalary { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -64,6 +53,8 @@ namespace Student_Hall_Management.Data
             modelBuilder.Entity<Student>()
                 .ToTable("Students", "HallManagementSchema")
                 .HasKey(u => u.Id);
+
+    
 
             modelBuilder.Entity<Student>()
                 .HasOne(s => s.Room)
@@ -156,10 +147,6 @@ namespace Student_Hall_Management.Data
                 .HasOne<HallDetails>()
                 .WithMany()
                 .HasForeignKey(h => h.HallId);
-            //modelBuilder.Entity<HallAdmin>()
-            //    .HasOne<Student>()
-            //    .WithMany()
-            //    .HasForeignKey(h => h.HallAdminId);
 
 
             //Notice
@@ -285,25 +272,6 @@ namespace Student_Hall_Management.Data
                 .HasOne<Student>()
                 .WithMany()
                 .HasForeignKey(h => h.Sender);
-
-        
-
-
-            //modelBuilder.Entity<Image>()
-            ////.ToTable("Images", "HallManagementSchema")
-            //.HasKey(u => u.Id);
-
-
-
-            //modelBuilder.Entity<User>()
-            //.ToTable("Users", "TutorialAppSchema")
-            //.HasKey(u => u.UserId);
-
-            //modelBuilder.Entity<UserJobInfo>()
-            //.HasKey(u => u.UserId);
-
-            //modelBuilder.Entity<UserSalary>()
-            //.HasKey(u => u.UserId);
 
         }
 
