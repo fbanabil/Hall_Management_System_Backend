@@ -125,10 +125,10 @@ namespace Student_Hall_Management.Repositories
                 .ToListAsync();
         }
 
-        public async Task<Room> GetRoomByRoomNo(string roomNo,int hallId)
+        public async Task<Room> GetRoomByRoomNo(string roomNo, int hallId)
         {
             return await _entityFramework.Rooms
-                .Where(r => r.RoomNo == roomNo && r.HallId==hallId)
+                .Where(r => r.RoomNo == roomNo && r.HallId == hallId)
                 .FirstOrDefaultAsync();
         }
 
@@ -141,12 +141,29 @@ namespace Student_Hall_Management.Repositories
         }
 
 
-        public async Task<PendingRoomRequest> GetPendingRoomRequest(int studentId,int hallId)
+        public async Task<PendingRoomRequest> GetPendingRoomRequest(int studentId, int hallId)
         {
             return await _entityFramework.PendingRoomRequests
                 .Where(r => r.StudentId == studentId && r.HallId == hallId)
                 .FirstOrDefaultAsync();
         }
+
+        public async Task RemoveRoomNo(string roomNo, int value)
+        {
+            _entityFramework.Students
+                .Where(s => s.RoomNo == roomNo && s.HallId == value)
+
+                .ToList()
+                .ForEach(s => s.RoomNo = null);
+        }
+
+        public Task<Room?>? GetRoomByRoomNoAndHallId(string? roomNo, int value)
+        {
+            return _entityFramework.Rooms
+                .Where(r => r.RoomNo == roomNo && r.HallId == value)
+                .FirstOrDefaultAsync();
+        }
+
 
     }
 }

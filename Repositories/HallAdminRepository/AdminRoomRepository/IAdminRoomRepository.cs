@@ -19,7 +19,7 @@ namespace Student_Hall_Management.Repositories
         public Task<Student> GetStudent(int studentId);
         public Task<PendingRoomRequest> GetPendingRoomRequest(int studentId, int hallId);
         public Task RemoveEntityAsync<T>(T entityToRemove);
-
-
+        public Task RemoveRoomNo(string roomNo, int value);
+        public Task<Room?>? GetRoomByRoomNoAndHallId(string? roomNo, int value);
     }
 }

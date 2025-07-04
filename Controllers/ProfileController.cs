@@ -13,7 +13,7 @@ using System.Security.Cryptography;
 
 namespace Student_Hall_Management.Controllers
 {
-    [Authorize(Roles = "Student,HallAdmin")]
+    [Authorize(Roles = "Student,HallAdmin,DSW")]
     [ApiController]
     [Route("/[controller]")]
     public class ProfileController : ControllerBase
@@ -58,7 +58,7 @@ namespace Student_Hall_Management.Controllers
                 //studen.imagedata=string64 of the saved pathh in it
 
                 student.ImageData = Convert.ToBase64String(System.IO.File.ReadAllBytes(student.ImageData));
-                ProfileToShowDto studentToShow = _mapper.Map<ProfileToShowDto>(student);
+                ProfileToShowDto? studentToShow = _mapper.Map<ProfileToShowDto>(student);
 
                 if (student.HallId == null)
                 {

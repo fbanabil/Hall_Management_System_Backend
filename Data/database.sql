@@ -171,12 +171,11 @@ CREATE TABLE [HallManagementSchema].[Room] (
     [RoomCondition] NVARCHAR (50) NOT NULL,
     [HasSeats]      INT           NOT NULL,
     [OccupiedSeats] INT           NOT NULL,
-    [HallId]        INT           NULL,
-    PRIMARY KEY CLUSTERED ([RoomNo] ASC),
+    [HallId]        INT           NOT NULL,
+    CONSTRAINT [PK_Room] PRIMARY KEY CLUSTERED ([HallId] ASC, [RoomNo] ASC),
     FOREIGN KEY ([HallId]) REFERENCES [HallManagementSchema].[HallDetails] ([HallId])
 );
 END
-
 
 
 IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[HallManagementSchema].[Students]') AND type = 'U')
@@ -194,7 +193,7 @@ CREATE TABLE [HallManagementSchema].[Students] (
     [IsActive]   BIT            NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Students_Hall] FOREIGN KEY ([HallId]) REFERENCES [HallManagementSchema].[HallDetails] ([HallId]),
-    CONSTRAINT [FK_Students_Room] FOREIGN KEY ([RoomNo]) REFERENCES [HallManagementSchema].[Room] ([RoomNo]),
+    CONSTRAINT [FK_Students_Room] FOREIGN KEY ([HallId], [RoomNo]) REFERENCES [HallManagementSchema].[Room] ([HallId], [RoomNo]),
     UNIQUE NONCLUSTERED ([Email] ASC)
 );
 END

@@ -59,7 +59,8 @@ namespace Student_Hall_Management.Data
             modelBuilder.Entity<Student>()
                 .HasOne(s => s.Room)
                 .WithMany(r => r.Students)
-                .HasForeignKey(s => s.RoomNo)
+                .HasForeignKey(s => new { s.HallId, s.RoomNo })
+                .HasPrincipalKey(r => new { r.HallId, r.RoomNo })
                 .HasConstraintName("FK_Students_Room");
 
             modelBuilder.Entity<Student>()
@@ -85,7 +86,8 @@ namespace Student_Hall_Management.Data
             //Room
             modelBuilder.Entity<Room>()
                 .ToTable("Room", "HallManagementSchema")
-                .HasKey(u => u.RoomNo);
+                .HasKey(u => new {u.HallId, u.RoomNo });
+
             modelBuilder.Entity<Room>()
                .HasOne(r => r.Hall)
                .WithMany()

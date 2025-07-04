@@ -18,9 +18,11 @@ namespace Student_Hall_Management.Controllers
         private readonly IMapper _mapper;
         private readonly IAdminRoomRepository _adminRoomRepository;
         private readonly AdminRoomHelper _adminRoomHelper;
+        private readonly ILogger<AdminRoomController> _logger;
 
-        public AdminRoomController(IAdminRoomRepository adminRoomRepository)
+        public AdminRoomController(IAdminRoomRepository adminRoomRepository, ILogger<AdminRoomController> logger)
         {
+            _logger = logger;
             _adminRoomRepository = adminRoomRepository;
             _adminRoomHelper = new AdminRoomHelper(adminRoomRepository);
             _mapper = new MapperConfiguration(cfg =>
@@ -44,6 +46,7 @@ namespace Student_Hall_Management.Controllers
 
             }
             ).CreateMapper();
+            _logger = logger;
         }
 
 
@@ -92,7 +95,15 @@ namespace Student_Hall_Management.Controllers
             {
                 return BadRequest("Null request made");
             }
+            string email = User.FindFirst("userEmail")?.Value;
+            int? hallId = await Task.Run(() => _adminRoomRepository.GetHallId(email));
 
+            Room? exist = await Task.Run(() => _adminRoomRepository.GetRoomByRoomNoAndHallId(roomToAddDto.RoomNo, hallId.Value));
+
+            if(exist != null)
+            {
+                return BadRequest("Room already exists");
+            }
             Room room = new Room();
 
             room.RoomNo = roomToAddDto.RoomNo;
@@ -104,9 +115,7 @@ namespace Student_Hall_Management.Controllers
             room.OccupiedSeats = 0;
 
 
-            string email = User.FindFirst("userEmail")?.Value;
-            int? hallId = await Task.Run(() => _adminRoomRepository.GetHallId(email));
-
+            
             room.HallId = hallId.Value;
 
             //Console.WriteLine(room.RoomNo);
@@ -191,6 +200,9 @@ namespace Student_Hall_Management.Controllers
             {
                 return BadRequest("Room not found");
             }
+
+            await Task.Run(()=>_adminRoomRepository.RemoveRoomNo(room.RoomNo, hallId.Value));
+
             _adminRoomRepository.RemoveEntity(room);
             await Task.Run(() => _adminRoomRepository.SaveChangesAsync());
             AdminRoomPageDto adminRoomPageDto = new AdminRoomPageDto();
@@ -218,6 +230,8 @@ namespace Student_Hall_Management.Controllers
             string email = User.FindFirst("userEmail")?.Value;
             int? hallId = await Task.Run(() => _adminRoomRepository.GetHallId(email));
             Room room = await Task.Run(() => _adminRoomRepository.GetRoomByRoomNo(roomNo, hallId.Value));
+            _logger.LogInformation("Room fetched for update: " + roomNo + " " + hallId.Value);
+            _logger.LogInformation("Room details: " + room.RoomNo + " " + room.HallId + " " + room.OccupiedSeats + " " + room.HasSeats);
             if (room == null)
             {
                 return NotFound("Room not found");
@@ -285,12 +299,18 @@ namespace Student_Hall_Management.Controllers
                     room.RoomStatus = "UnOccupied";
                 }
 
-
+                _logger.LogInformation("Updated room : " + room.RoomNo +" "+ room.HallId);
 
                 _adminRoomRepository.UpdateEntity(room);
+
+
+                _logger.LogInformation("Updated room : " + room.RoomNo + " " + room.HallId);
+
+
                 student.RoomNo = pendingRoomRequest.RoomNo;
                 student.HallId = hallId.Value;
                 _adminRoomRepository.UpdateEntity(student);
+                _adminRoomRepository.SaveChanges();
                 _adminRoomRepository.RemoveEntity(pendingRoomRequest);
                 await Task.Run(() => _adminRoomRepository.SaveChangesAsync());
                 AdminRoomPageDto adminRoomPageDto = await _adminRoomHelper.GetAdminHomePage(hallId);
